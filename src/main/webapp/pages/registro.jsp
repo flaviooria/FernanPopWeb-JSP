@@ -2,36 +2,35 @@
   Created by IntelliJ IDEA.
   User: flaviooria
   Date: 31/07/2021
-  Time: 21:43
+  Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FernanPop | Logeo</title>
-  <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png">
-  <link rel="manifest" href="./assets/favicons/manifest.json">
+  <title>FernanPop | Registro </title>
+  <link rel="apple-touch-icon" sizes="57x57" href="../assets/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../assets/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../assets/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="../assets/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="../assets/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../assets/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../assets/favicons/manifest.json">
   <meta name="msapplication-TileColor" content="#3D5A80">
-  <meta name="msapplication-TileImage" content="./assets/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="../assets/favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#3D5A80">
   <!--styles css-->
-  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="../css/main.css" />
   <!--fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
@@ -57,28 +56,34 @@
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
-      <form action="" autocomplete="off">
-        <div class="header-search">
-          <input type="text" name="nameProduct" id="nameProduct" placeholder="Busca todo lo que quieras">
-          <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
-        </div>
-      </form>
+      <div class="header-loging">
+        <form action="">
+          <i class="fas fa-user-circle"></i>
+          <div class="sing-in-layer">
+            <h3>¿Tienes una cuenta?</h3>
+            <div class="sing-in">
+              <a href="../index.jsp">Iniciar Sesión</a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="hero-title animate__animated animate__fadeIn animate__slower animate-delay-3s">
       <h1>Fernan<span class="orange">Pop</span></h1>
       <p>Vende y compra lo que quieras en cualquier momento y lugar.</p>
     </div>
     <div class="hero-register animate__animated animate__fadeIn animate__slower animate-delay-3s">
-      <form id="form-login" method="get" action="./pages/verificarLogin.jsp">
-        <h3>Inciar Sesión</h3>
+      <form id="form-register" method="post" action="registerUser">
+        <h3>Crear una cuenta nueva</h3>
+        <label for="nombre">Nombre y Apellidos:</label><br />
+        <input type="text" name="name" id="nombre" /><br />
         <label for="correo">Correo electronico:</label><br />
         <input type="email" name="email" id="correo" /><br />
-        <label for="password">Contraseña:</label><br />
+        <label for="password">Contraseña: </label><br />
         <input type="password" name="pass" id="password">
         <div class="password">
           <input type="checkbox" class="checkbox">Mostrar contraseña
         </div>
-        <p class="form-register">Aun no estas registrado,hazlo aquí: <a class="form-register-link" href="./pages/registro.jsp">Registrarse</a></p>
         <div class="spinner">
           <div class="double-bounce1"></div>
           <div class="double-bounce2"></div>
@@ -90,10 +95,10 @@
             if(failed.equals("true")) {
               session.removeAttribute("failed");
         %>
-        <p>No se pudo iniciar sesión, intentalo de nuevo.</p>
+        <p>Hubo un problema, registro no procesado. Intentalo de nuevo.</p>
         <% }
         }%>
-        <button class="send" type="submit">Entrar <i class="fas fa-chevron-right"></i></button>
+        <button class="send">Registrarse <i class="fas fa-chevron-right"></i></button>
       </form>
     </div>
     <div class="wave-bottom" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150"
@@ -108,15 +113,15 @@
     <h3>Caracteristicas</h3>
     <div class="features-items">
       <div class="item-badge">
-        <img src="./assets/img/soFast-trust.png" width="250" alt="rapido-confiable" />
+        <img src="../assets/img/soFast-trust.png" width="250" alt="rapido-confiable" />
         <p>Es rapido y confiable.</p>
       </div>
       <div class="item-badge">
-        <img src="./assets/img/pay-secure.png" width="250" alt="pagoSeguro" />
+        <img src="../assets/img/pay-secure.png" width="250" alt="pagoSeguro" />
         <p>Pagos seguros siempre.</p>
       </div>
       <div class="item-badge">
-        <img src="./assets/img/succes.png" width="250" alt="acuerdo-mutuo" />
+        <img src="../assets/img/succes.png" width="250" alt="acuerdo-mutuo" />
         <p>
           Acuerdo mutuo entre<br>comprador
           y vendedor.
@@ -133,7 +138,7 @@
             style="stroke: none;"></path>
     </svg></div>
     <div class="faqs-logo" data-aos="fade-in" data-aos-easing="ease">
-      <img src="./assets/img/faq.jpg" width="500" alt="">
+      <img src="../assets/img/faq.jpg" width="500" alt="">
     </div>
     <div class="faqs-list" data-aos="fade-in" data-aos-easing="ease">
       <h1>Preguntas Frecuentes</h1>
@@ -159,9 +164,9 @@
 
     <div class="contact-info">
       <form action="">
-        <label for="txtEmail">Correo:</label>
+        <label for="">Correo:</label>
         <input type="email" name="" id="txtEmail">
-        <label for="txtAreaConsulta">Indica cual es tu problema o consulta:</label>
+        <label for="">Indica cual es tu problema o consulta:</label>
         <textarea name="" id="txtAreaConsulta" cols="30" rows="10"></textarea>
         <button>Enviar <i class="fas fa-envelope-open-text"></i></button>
       </form>
@@ -188,5 +193,5 @@
 </body>
 <!--Script de animation scroll-->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="./js/loger.js"></script>
+<script src="../js/app.js"></script>
 </html>
