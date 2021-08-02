@@ -92,7 +92,7 @@ public class registerUser extends HttpServlet {
                 }
             } else {
                 session.setAttribute("error","No se pudo conectar a la base de datoas.");
-                response.sendRedirect("error.jsp");
+                response.sendRedirect("./pages/error.jsp");
             }
         }
     }

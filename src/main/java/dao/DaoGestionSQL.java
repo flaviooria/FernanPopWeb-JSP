@@ -630,7 +630,7 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
 
     @Override
     public ArrayList<Producto> obtenerAllProductos(DAOManager dao) {
-        final String SQLSELECTPRODUCTS = "select * from productos order by precio";
+        final String SQLSELECTPRODUCTS = "select * from productos order by nombre";
         return getProductos(dao, SQLSELECTPRODUCTS);
     }
 
@@ -743,7 +743,8 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     @Override
     public ArrayList<Mensaje> mensajesRecibidosOfUser(int idUser, DAOManager dao) {
         String sql = "select *, DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE, " +
-                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajes where receptor = ?";
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajes where receptor = ?" +
+                " and estaLeido = 0";
         ArrayList<Mensaje> mensajes = new ArrayList<>();
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);

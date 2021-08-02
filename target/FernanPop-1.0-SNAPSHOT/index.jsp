@@ -71,7 +71,7 @@
             <p>Vende y compra lo que quieras en cualquier momento y lugar.</p>
         </div>
         <div class="hero-register animate__animated animate__fadeIn animate__slower animate-delay-3s">
-            <form class="form-register" id="form-login" method="get" action="./pages/verificarLogin.jsp">
+            <form class="form-register" id="form-login" method="post" action="${pageContext.request.contextPath}/verificarLogin">
                 <h3>Inciar Sesión</h3>
                 <label for="correo">Correo electronico:</label><br/>
                 <input type="email" name="email" id="correo"/><br/>

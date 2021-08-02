@@ -1,6 +1,7 @@
 <%@ page import="modelos.Usuario" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="modelos.Producto" %><%--
+<%@ page import="modelos.Producto" %>
+<%@ page import="modelos.Gestion" %><%--
   Created by IntelliJ IDEA.
   User: 2097k
   Date: 09/07/2021
@@ -12,10 +13,32 @@
     Usuario user = (Usuario) session.getAttribute("user");
     System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
-        session.setAttribute("error","Usuario no identificado.");
+        session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");
     } else {
-        ArrayList<Producto> listProducts = (ArrayList<Producto>) session.getAttribute("productosByTerm");
+        ArrayList<Producto> listProducts;
+        if ((ArrayList<Producto>) session.getAttribute("productosByTerm") == null) {
+            listProducts = new ArrayList<>();
+        } else {
+            listProducts = (ArrayList<Producto>) session.getAttribute("productosByTerm");
+            session.removeAttribute("productosByTerm");
+        }
+
+        ArrayList<Producto> allProducts = new ArrayList<>();
+        Gestion gestion = null;
+
+        try {
+            gestion = new Gestion();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (gestion != null) {
+            allProducts = Gestion.allProductos();
+        } else {
+            session.setAttribute("error", "No se pudo conectar a la base de datos.");
+            response.sendRedirect("./error.jsp");
+        }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +73,7 @@
             rel="stylesheet">
     <!--fontawesome icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"/>
     <!-- Style of hamburger_menu -->
     <link href="../dist/hamburgers.css" rel="stylesheet">
 </head>
@@ -72,6 +95,7 @@
                 <li><a class="link" href="../pages/inicio.jsp">Inicio</a></li>
                 <li><a class="link" href="../pages/editarPerfil.jsp">Editar Perfíl</a></li>
                 <li><a class="link" href="../pages/subirProducto.jsp">Subir Producto</a></li>
+                <li><a class="link" href="../pages/productos.jsp">Ver Productos</a></li>
                 <li><a class="link" href="../pages/tratos.jsp">Ver mis tratos</a></li>
                 <li><a class="link" href="./cerrarSesion.jsp">Cerrar Sesión</a></li>
             </ul>
@@ -92,11 +116,11 @@
 
         </div>
         <%
-            if (listProducts.isEmpty()) {
+            if (listProducts.isEmpty() && allProducts.isEmpty()) {
         %>
         <!-- Alert Products -->
         <div class="alert-products">
-            <h1 class="alert-title">Ups, producto  no encontrado</h1>
+            <h1 class="alert-title">Ups, producto no encontrado</h1>
             <lottie-player class="alert-lottie" src="https://assets4.lottiefiles.com/packages/lf20_b8gboh1d.json"
                            speed="1" loop autoplay>
             </lottie-player>
@@ -105,17 +129,42 @@
         <!-- Section Products -->
         <div class="products">
             <%
-                for (Producto p: listProducts) {
+                for (Producto p : listProducts) {
+                    System.out.println("Entro a productos por termino");
             %>
             <div class="card">
-                <img class="card-image" loading="lazy" src="${pageContext.request.contextPath}/renderImagenProducto?id=<%=p.getId()%>" alt="imagen">
-                <h3><%=p.getNombre()%></h3>
+                <img class="card-image" loading="lazy"
+                     src="${pageContext.request.contextPath}/renderImagenProducto?id=<%=p.getId()%>" alt="imagen">
+                <h3><%=p.getNombre()%>
+                </h3>
                 <div class="focus-content">
-                    <p class="focus-description"><%=p.getDescripcion()%></p>
+                    <p class="focus-description"><%=p.getDescripcion()%>
+                    </p>
                     <p class="focus-price"><%=p.getPrecio()%> €</p>
-                    <a href="${pageContext.request.contextPath}/detalleProducto?id=<%=p.getId()%>" class="btn-delete">Ver Producto</a>
+                    <a href="${pageContext.request.contextPath}/detalleProducto?id=<%=p.getId()%>" class="btn-delete">Ver
+                        Producto</a>
                 </div>
             </div>
+            <% } %>
+            <%
+                if (listProducts.isEmpty()) {
+                    for (Producto p : allProducts) {
+                        System.out.println("Entro a todos los productos");
+            %>
+            <div class="card">
+                <img class="card-image" loading="lazy"
+                     src="${pageContext.request.contextPath}/renderImagenProducto?id=<%=p.getId()%>" alt="imagen">
+                <h3><%=p.getNombre()%>
+                </h3>
+                <div class="focus-content">
+                    <p class="focus-description"><%=p.getDescripcion()%>
+                    </p>
+                    <p class="focus-price"><%=p.getPrecio()%> €</p>
+                    <a href="${pageContext.request.contextPath}/detalleProducto?id=<%=p.getId()%>" class="btn-delete">Ver
+                        Producto</a>
+                </div>
+            </div>
+            <% } %>
             <% } %>
         </div>
         <% } %>

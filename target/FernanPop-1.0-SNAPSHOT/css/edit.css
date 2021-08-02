@@ -406,7 +406,6 @@ header {
     color: var(--blue-sky);
     font-weight: var(--labels-weigth);
     font-family: var(--fuente-titulos);
-    display: none;
 }
 
 /* Footer */

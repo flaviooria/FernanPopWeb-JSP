@@ -89,6 +89,7 @@
                 <li><a class="link" href="../pages/inicio.jsp">Inicio</a></li>
                 <li><a class="link" href="../pages/editarPerfil.jsp">Editar Perfíl</a></li>
                 <li><a class="link" href="../pages/subirProducto.jsp">Subir Producto</a></li>
+                <li><a class="link" href="../pages/productos.jsp">Ver Productos</a></li>
                 <li><a class="link" href="../pages/tratos.jsp">Ver mis tratos</a></li>
                 <li><a class="link" href="./cerrarSesion.jsp">Cerrar Sesión</a></li>
             </ul>

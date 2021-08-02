@@ -251,5 +251,9 @@ public class Gestion {
     public static Mensaje obtenerMensje(int idMensaje) {
         return daoGestionSQL.obtenerMensaje(idMensaje,dao);
     }
+
+    public static ArrayList<Producto> allProductos() {
+        return daoGestionSQL.obtenerAllProductos(dao);
+    }
  }
 
