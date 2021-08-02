@@ -78,7 +78,7 @@
             <p>Vende y compra lo que quieras en cualquier momento y lugar.</p>
         </div>
         <div class="hero-register animate__animated animate__fadeIn animate__slower animate-delay-3s">
-            <form class="form-register" id="form-register" method="post" action="registerUser">
+            <form class="form-register" id="form-register" method="post" action="${pageContext.request.contextPath}/registerUser">
                 <h3>Crear una cuenta nueva</h3>
                 <label for="nombre">Nombre: </label><br/>
                 <input type="text" name="name" id="nombre"/><br/>

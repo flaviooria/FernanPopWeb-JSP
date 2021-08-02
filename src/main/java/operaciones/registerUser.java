@@ -80,7 +80,7 @@ public class registerUser extends HttpServlet {
                         String token = Gestion.obtenerTokenUsuario(user);
                         String mensajeUsuario = NotificacionToken.obtenerHtml(user.getNombre(),token);
                         if (Email.seEnviaElEmail(user.getCorreo(), mensajeUsuario, asunto)) {
-                            response.sendRedirect("index.jsp");
+                            response.sendRedirect("./index.jsp");
                         }
                     } catch (Exception e) {
                         System.out.println("Ha surgido un error no se pudo realizar el registro");

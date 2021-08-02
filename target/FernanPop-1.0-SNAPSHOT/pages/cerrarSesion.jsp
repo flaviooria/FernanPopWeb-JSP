@@ -9,5 +9,5 @@
 <%
     session.removeAttribute("user");
     session.removeAttribute("token");
-    response.sendRedirect("./login.jsp");
+    response.sendRedirect("../index.jsp");
 %>
