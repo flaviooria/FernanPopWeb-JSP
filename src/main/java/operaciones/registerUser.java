@@ -70,7 +70,7 @@ public class registerUser extends HttpServlet {
 
         if (name.isEmpty() || !Usuario.validarCorreo(email) || !Usuario.validarContrasenia(pass)) {
             session.setAttribute("failed",true);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("./pages/registro.jsp");
         } else {
             if (gestion != null) {
                 if (Gestion.registrarUsuario(user)) {
@@ -80,7 +80,7 @@ public class registerUser extends HttpServlet {
                         String token = Gestion.obtenerTokenUsuario(user);
                         String mensajeUsuario = NotificacionToken.obtenerHtml(user.getNombre(),token);
                         if (Email.seEnviaElEmail(user.getCorreo(), mensajeUsuario, asunto)) {
-                            response.sendRedirect("./pages/login.jsp");
+                            response.sendRedirect("index.jsp");
                         }
                     } catch (Exception e) {
                         System.out.println("Ha surgido un error no se pudo realizar el registro");
@@ -88,7 +88,7 @@ public class registerUser extends HttpServlet {
 
                 } else {
                     session.setAttribute("failed",true);
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("./pages/registro.jsp");
                 }
             } else {
                 session.setAttribute("error","No se pudo conectar a la base de datoas.");

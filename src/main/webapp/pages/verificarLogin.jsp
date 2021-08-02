@@ -24,7 +24,7 @@
 
         if ((email.isEmpty() || pass.isEmpty())) {
             session.setAttribute("failed","true");
-            response.sendRedirect("./login.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             if (gestion != null) {
                 user = Gestion.login(email,pass);
@@ -42,7 +42,7 @@
                     }
                 } else {
                     session.setAttribute("failed","true");
-                    response.sendRedirect("./login.jsp");
+                    response.sendRedirect("index.jsp");
                 }
             } else {
                 session.setAttribute("error","No se pudo conectar a la base de datoas.");
