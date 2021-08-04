@@ -163,7 +163,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
     //Funcion para pintar el chat!!!
-    $(".content .form button").on("click", ajax);
+    /*$(".content .form button").on("click", ajax);
     function ajax() {
         chat.innerHTML = " ";
         console.log($(".idChat").val());
@@ -181,7 +181,35 @@
                 console.log("error");
             }
         })
-    }
+    }*/
+
+    let form = document.querySelectorAll(".form button");
+
+    form.forEach(item => {
+        item.addEventListener("click", (e) => {
+            chat.innerHTML = " ";
+            let item = e.target;
+            let form = item.parentElement;
+            let idChat = form.children.item(2).value;
+            let accion = form.children.item(3).value;
+
+            console.log(idChat);
+            console.log(accion)
+
+            //Llamada ajax a la pagina de chat
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText);
+                    chat.innerHTML = this.responseText;
+                }
+            };
+
+            xhttp.open("GET","${pageContext.request.contextPath}/pages/chat.jsp?idChat="+idChat+"&accion="+accion,true);
+            xhttp.send();
+        })
+    })
+
 </script>
 <script src="../js/chat.js"></script>
 </body>
