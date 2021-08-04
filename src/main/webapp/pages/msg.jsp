@@ -166,6 +166,7 @@
     $(".content .form button").on("click", ajax);
     function ajax() {
         chat.innerHTML = " ";
+        console.log($(".idChat").val());
         $.ajax({
             url: "${pageContext.request.contextPath}/pages/chat.jsp",
             async: true,

@@ -760,10 +760,6 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
                 mensaje.setFechaLectura(rs.getString("fechaL"));
                 mensaje.setEstaLeido(rs.getBoolean("estaLeido"));
                 mensaje.setAsunto(rs.getString("asunto"));
-                //Si el mensaje no esta como leido lo setea a leido
-                if (!mensaje.isEstaLeido()) {
-                    setearLecturaMensaje(mensaje.getId(), dao);
-                }
                 mensajes.add(mensaje);
             }
         } catch (SQLException throwables) {
@@ -797,13 +793,8 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
             stmt.setInt(1,idMensaje);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                Mensaje mensaje = new Mensaje();
-                mensaje.setId(mensaje.getId());
-                mensaje.setContenido(rs.getString("contenido"));
-                mensaje.setEstaLeido(rs.getBoolean("estaLeido"));
-                mensaje.setFechaEnvio(rs.getString("fechaE"));
-                mensaje.setFechaLectura(rs.getString("fechaL"));
-                return mensaje;
+                return new Mensaje(rs.getInt("id"),rs.getString("contenido"),rs.getBoolean("estaLeido")
+                ,rs.getString("fechaE"),rs.getString("fechaL"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

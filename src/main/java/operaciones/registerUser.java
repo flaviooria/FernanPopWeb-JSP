@@ -26,30 +26,12 @@ import plantillasHtml.NotificacionToken;
 @WebServlet(name = "registerUser", value = {"/registerUser"})
 public class registerUser extends HttpServlet {
 
- 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -77,6 +59,7 @@ public class registerUser extends HttpServlet {
                     try {
                         String asunto = "Validación de token para iniciar sesión en FernanPop";
                         Gestion.asignarTokenUsuario(Usuario.obtengoToken(),user);
+                        System.out.println("Registrando al usuario: => " + user);
                         String token = Gestion.obtenerTokenUsuario(user);
                         String mensajeUsuario = NotificacionToken.obtenerHtml(user.getNombre(),token);
                         if (Email.seEnviaElEmail(user.getCorreo(), mensajeUsuario, asunto)) {
@@ -96,15 +79,4 @@ public class registerUser extends HttpServlet {
             }
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

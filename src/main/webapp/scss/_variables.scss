@@ -1,0 +1,42 @@
+:root {
+    --fuente-titulos: 'Raleway', sans-serif;
+    --fuente-texto: 'Quicksand', sans-serif;
+    --blue-metalic: #3D5A80;
+    --color-texto: #313948;
+    --orange: #EE6C4D;
+    --blue-soft: #97c0d8;
+    --placeholder-weight: 500;
+    --labels-weigth: 700;
+    --subtitulo-weight: 700;
+    --linear-bg: linear-gradient(0deg, #55f1f1 0%, #97c0d8 60%, #97c0d8 100%);
+    height: 100%;
+    --blue-sky: #72adfa;
+}
+
+//Colores
+$blue-metalic : var(--blue-metalic);
+$blue-soft : var(--blue-soft);
+$blue-sky : var(--blue-sky);
+$orange : var(--orange);
+$linear-bg : var(--linear-bg);
+$color-texto : var(--color-texto);
+
+//Fuentes
+$fuente-titulo : var(--fuente-titulos);
+$fuente-texto : var(--fuente-texto);
+
+//weights 
+$weights : (
+    "medium" : var(--placeholder-weight),
+    "large" : var(--subtitulo-weight)
+);
+
+//breakpoints 
+
+$breakpoints: (
+    "mobile-s" : 320px,
+    "mobile-m" : 375px,
+    "mobile-l" : 420px,
+    "tablet" : 768px,
+    "desktop-m" : 1024px
+);

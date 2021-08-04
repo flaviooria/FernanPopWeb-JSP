@@ -21,6 +21,7 @@
         Usuario vendedor = null;
         if (session.getAttribute("userVendedor") != null) {
             vendedor = (Usuario) session.getAttribute("userVendedor");
+            session.removeAttribute("userVendedor");
         }
 
         Gestion gestion = null;
@@ -119,15 +120,14 @@
                         %>
                         <div class="user">
                             <label for="user-<%=id%>"><%=allNombre%>
-                            </label>
+                                (Vendedor)</label>
                             <input type="radio" name="user" id="user-<%=id%>" value="<%=id%>">
                         </div>
-                        <% } %>
+                        <% } else if (!listaCompradores.isEmpty()) {%>
                         <%
-                            if (!listaCompradores.isEmpty()) {
-                                for (Usuario u : listaCompradores) {
-                                    String allNombre = Utils.getNombreCompleto(u);
-                                    int id = u.getId();
+                            for (Usuario u : listaCompradores) {
+                                String allNombre = Utils.getNombreCompleto(u);
+                                int id = u.getId();
                         %>
                         <div class="user">
                             <label for="user-<%=id%>"><%=allNombre%>
@@ -152,7 +152,10 @@
                 %>
                 <p class="alert-failed">No se pudo enviar el mensaje, vuelve a intentarlo.</p>
                 <%}%>
-                <%} session.removeAttribute("failed");%>
+                <%
+                    }
+                    session.removeAttribute("failed");
+                %>
             </div>
             <button type="submit" class="btn-save">Enviar</button>
         </form>

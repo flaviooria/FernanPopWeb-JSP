@@ -25,15 +25,6 @@ public class obtenerDatosProducto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String desc = request.getParameter("descrip");
-        Part part = request.getPart("imgFile");
-        System.out.println(part.getName());
-        System.out.println(name); 
-        System.out.println(desc);
-        request.setAttribute("name", name);
-        request.setAttribute("desc", desc);
-        request.getRequestDispatcher("./pages/subirProductoDB.jsp").forward(request, response);
     }
 
     @Override

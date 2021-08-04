@@ -48,7 +48,7 @@ public class perfilUsuario extends HttpServlet {
                 case "guardar":
                     String correoUser = user.getCorreo();
                     String nombre, apellido, correo, contrasenia;
-                    int movil, edad;
+                    int movil, edad, cont = 0;
 
                     nombre = request.getParameter("name");
                     apellido = request.getParameter("lastname");
@@ -66,7 +66,7 @@ public class perfilUsuario extends HttpServlet {
                             request.getSession().setAttribute("editada", "false");
                             response.sendRedirect("./pages/editarPerfil.jsp");
                         }
-                    }
+                    } else cont++;
                     if (!apellido.isEmpty() && !apellido.equalsIgnoreCase(user.getApellido())) {
                         if (Gestion.actualizarDatos("apellido", apellido, correoUser)) {
                             user.setApellido(apellido);
@@ -76,7 +76,7 @@ public class perfilUsuario extends HttpServlet {
                             request.getSession().setAttribute("editada", "false");
                             response.sendRedirect("./pages/editarPerfil.jsp");
                         }
-                    }
+                    } else cont++;
                     if (!correo.isEmpty() && !correo.equalsIgnoreCase(user.getCorreo()) &&
                             Usuario.validarCorreo(correo)) {
                             if (Gestion.actualizarDatos("correo", correo, correoUser)) {
@@ -86,7 +86,7 @@ public class perfilUsuario extends HttpServlet {
                                 request.getSession().setAttribute("editada", "false");
                             }
                         response.sendRedirect("./pages/editarPerfil.jsp");
-                    }
+                    } else cont++;
                     if (!contrasenia.isEmpty() && !contrasenia.equalsIgnoreCase(user.getContrasenia())) {
                         if (Gestion.actualizarDatos("contrasenia", contrasenia, correoUser)) {
                             user.setContrasenia(contrasenia);
@@ -95,7 +95,7 @@ public class perfilUsuario extends HttpServlet {
                             request.getSession().setAttribute("editada", "false");
                         }
                         response.sendRedirect("./pages/editarPerfil.jsp");
-                    }
+                    } else cont++;
 
 
                     if (request.getParameter("phone").length() == 9 &&
@@ -111,7 +111,7 @@ public class perfilUsuario extends HttpServlet {
                             }
                             response.sendRedirect("./pages/editarPerfil.jsp");
                         }
-                    }
+                    } else cont++;
 
                     if (request.getParameter("age").length() == 2 &&
                             !request.getParameter("age").isEmpty()) {
@@ -126,7 +126,8 @@ public class perfilUsuario extends HttpServlet {
                             }
                             response.sendRedirect("./pages/editarPerfil.jsp");
                         }
-                    }
+                    } else cont++;
+
                     if (avatar.getSize() > 0) {
                         if (user.getFotoPerfil() == null) {
                             if (Gestion.actualizarFotoUsuario(avatarUser, id)) {
@@ -148,11 +149,20 @@ public class perfilUsuario extends HttpServlet {
                             }
                         }
 
+                    } else cont++;
+
+                    //Si no hay ningun dato para editar solo redireccina a la pagina de nuevo.
+                    if (cont == 7) {
+                        response.sendRedirect("./pages/editarPerfil.jsp");
                     }
+
                     break;
                 default:
                     response.sendRedirect("./pages/inicio.jsp");
             }
+        } else {
+            request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
+            response.sendRedirect("./pages/error.jsp");
         }
 
     }

@@ -34,14 +34,13 @@ public class verificarLogin extends HttpServlet {
 
         if ((email.isEmpty() || pass.isEmpty())) {
             request.getSession().setAttribute("failed","true");
-            response.sendRedirect("../index.jsp");
+            response.sendRedirect("./index.jsp");
         } else {
             if (gestion != null) {
                 user = Gestion.login(email,pass);
                 if (user != null) {
                     //Si no esta autentificado el usuario le hacemos el auth y lo rederijimos a la página de cuenta registrada
                     if(!Gestion.isAutentificado(user)) {
-                        Gestion.setAutentificado(user);
                         String token = Gestion.obtenerTokenUsuario(user);
                         request.getSession().setAttribute("user", user);
                         request.getSession().setAttribute("token", token);
@@ -52,11 +51,11 @@ public class verificarLogin extends HttpServlet {
                     }
                 } else {
                     request.getSession().setAttribute("failed","true");
-                    response.sendRedirect("../index.jsp");
+                    response.sendRedirect("./index.jsp");
                 }
             } else {
                 request.getSession().setAttribute("error","No se pudo conectar a la base de datoas.");
-                response.sendRedirect("./error.jsp");
+                response.sendRedirect("./pages/error.jsp");
             }
         }
     }

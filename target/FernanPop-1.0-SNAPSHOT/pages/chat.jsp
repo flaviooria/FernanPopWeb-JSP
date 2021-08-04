@@ -10,7 +10,9 @@
 <%
     int idChat = Integer.parseInt(request.getParameter("idChat"));
     String accion = request.getParameter("accion");
-    Mensaje msg = new Mensaje();
+    System.out.println("el id chat es: "+ idChat);
+    System.out.println(accion);
+    Mensaje msg = null;
     Gestion gestion = null;
     String fecha = " ";
     try {
@@ -25,9 +27,11 @@
         session.setAttribute("error", "No se pudo conectar a la base de datos.");
         response.sendRedirect("./error.jsp");
     }
+    assert msg != null;
 %>
 <div class="chat-message">
-    <p class="message-content"><%=msg.getContenido()%></p>
+    <p class="message-content"><%=msg.getContenido()%>
+    </p>
     <div class="message-about">
         <span class="about-date"><%=fecha%></span>
         <span class="about-check">
@@ -35,7 +39,11 @@
                 if (msg.isEstaLeido()) {
             %>
             <img src="../assets/icons/double-check-skyblue.svg" alt="check">
-            <%} else {%>
+            <%
+            } else {
+                //Si el mensaje no esta como leido lo setea a leido
+                Gestion.setearMensajeComoLeido(msg.getId());
+            %>
             <img src="../assets/icons/double-check-gray.svg" alt="check">
             <%}%>
             <a href="" class="btn-delete" title="eliminar"><i class="fas fa-trash-alt"></i></a>

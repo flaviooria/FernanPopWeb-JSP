@@ -23,7 +23,16 @@ public class Mensaje {
         this.receptor = receptor;
     }
 
+    public Mensaje(int id,String contenido,boolean estaLeido, String fechaEnvio, String fechaLectura) {
+        this.id = id;
+        this.contenido = contenido;
+        this.estaLeido = estaLeido;
+        this.fechaEnvio = fechaEnvio;
+        this.fechaLectura = fechaLectura;
+    }
+
     public Mensaje() {
+
     }
 
     public int getId() {

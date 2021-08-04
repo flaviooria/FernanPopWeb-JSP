@@ -1,0 +1,54 @@
+@use "../variables" as *;
+
+/* Hamburger menu */
+
+.hamburger {
+    z-index: 5;
+    top: 10px;
+}
+
+.navbar-menu {
+    position: fixed;
+    background-color: $blue-metalic;
+    z-index: 3;
+    top: 0;
+    left: -100vw;
+    width: 235px;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    transition: .3s;
+
+    ul {
+        display: block;
+        width: 90%;
+        height: 30px;
+        margin: 100px auto 0;
+    }
+
+    li {
+        margin: 0 0 20px;
+        padding: 0;
+        list-style: none;
+
+        & .link {
+            height: 30px;
+            margin-bottom: 10px;
+            padding: 5px 8px;
+            background-color: rgba(117, 127, 138, 0.3);
+            color: #97c0d8;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.open {
+    left: 0vw;
+}
+
+

@@ -255,5 +255,9 @@ public class Gestion {
     public static ArrayList<Producto> allProductos() {
         return daoGestionSQL.obtenerAllProductos(dao);
     }
+
+    public static void setearMensajeComoLeido(int idChat) {
+        daoGestionSQL.setearLecturaMensaje(idChat,dao);
+    }
  }
 
