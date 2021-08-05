@@ -1,0 +1,38 @@
+@use "../body" as *;
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    @include flex();
+    background: $linear-bg;
+    .logo {
+        color: $color-texto;
+        font-family: $fuente-titulo;
+        font-size: 1em;
+
+        .orange {
+            color: $orange;
+        }
+    }
+
+    @media (min-width: breakpoint(tablet)) {
+        .logo {
+            font-size: 1.5em;
+            grid-column: 2 / -1;
+            height: 80px;
+            width: 100%;
+            display: grid;
+            justify-content: center;
+
+            & h1 {
+                margin: 10px auto;
+            }
+        }
+    }
+}
