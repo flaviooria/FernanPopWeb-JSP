@@ -121,6 +121,6 @@ public class Utils {
 
     public static String getNombreCompleto(Usuario user) {
         String term = user.getNombre() +  " " + user.getApellido();
-        return Utils.cadenaCaseInsensitive(term);
+        return cadenaCaseInsensitive(term);
     }
 }

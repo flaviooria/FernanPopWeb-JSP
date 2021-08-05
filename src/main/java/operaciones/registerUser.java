@@ -51,7 +51,7 @@ public class registerUser extends HttpServlet {
         }
 
         if (name.isEmpty() || !Usuario.validarCorreo(email) || !Usuario.validarContrasenia(pass)) {
-            session.setAttribute("failed",true);
+            session.setAttribute("failed","true");
             response.sendRedirect("./pages/registro.jsp");
         } else {
             if (gestion != null) {
@@ -70,11 +70,11 @@ public class registerUser extends HttpServlet {
                     }
 
                 } else {
-                    session.setAttribute("failed",true);
+                    session.setAttribute("failed","true");
                     response.sendRedirect("./pages/registro.jsp");
                 }
             } else {
-                session.setAttribute("error","No se pudo conectar a la base de datoas.");
+                session.setAttribute("error","No se pudo conectar a la base de datos.");
                 response.sendRedirect("./pages/error.jsp");
             }
         }

@@ -21,6 +21,9 @@ public class renderAvatar extends HttpServlet {
 
         if (gestion != null) {
             Gestion.renderAvatarUser(id,response);
+        } else {
+            request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
+            response.sendRedirect("./pages/error.jsp");
         }
     }
 

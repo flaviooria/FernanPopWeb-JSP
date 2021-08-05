@@ -44,7 +44,7 @@ public class authToken extends HttpServlet {
                 response.sendRedirect("./pages/autentificarToken.jsp");
             }
         } else {
-            request.getSession().setAttribute("error","No se pudo conectar a la base de datoas.");
+            request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
             response.sendRedirect("./pages/error.jsp");
         }
     }

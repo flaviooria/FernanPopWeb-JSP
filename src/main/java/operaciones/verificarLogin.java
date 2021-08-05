@@ -54,7 +54,7 @@ public class verificarLogin extends HttpServlet {
                     response.sendRedirect("./index.jsp");
                 }
             } else {
-                request.getSession().setAttribute("error","No se pudo conectar a la base de datoas.");
+                request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
                 response.sendRedirect("./pages/error.jsp");
             }
         }
