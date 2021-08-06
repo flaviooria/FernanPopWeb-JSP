@@ -40,3 +40,8 @@ $breakpoints: (
     "tablet" : 768px,
     "desktop-m" : 1024px
 );
+
+//funcion para obtener breakpoints 
+@function breakpoint($name) {
+    @return map-get($breakpoints, $name);
+}

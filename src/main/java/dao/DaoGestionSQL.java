@@ -16,18 +16,35 @@ import java.util.Calendar;
 public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoChat,DaoTrato {
     @Override
     public boolean insert(Usuario usuario, DAOManager dao) {
-        final String SQL_INSERT = "insert into usuarios (nombre,correo,contrasenia) values (?,?,?)";
+        final String SQL_INSERT = "insert into usuarios (nombre,correo,contrasenia,contraseniaCifrada) values (?,?,?,?)";
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(SQL_INSERT);
             stmt.setString(1, usuario.getNombre());
             stmt.setString(2, usuario.getCorreo());
             stmt.setString(3, usuario.getContrasenia());
+            stmt.setString(4, usuario.getContraseniaCifrada());
             stmt.executeUpdate();
             return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public String getClaveCifrada(String correoUser, DAOManager dao) {
+        String  sql = "select contraseniaCifrada from usuarios where correo = ?";
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setString(1,correoUser);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("contraseniaCifrada");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -59,6 +76,7 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
                 user.setApellido(apellido);
                 user.setNotaMedia(notaMedia);
                 user.setFechaCreacion(fechaCreacion);
+                user.setContraseniaCifrada(rs.getString("contraseniaCifrada"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

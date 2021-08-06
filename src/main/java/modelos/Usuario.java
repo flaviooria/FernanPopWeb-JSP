@@ -17,6 +17,14 @@ public class Usuario {
   private float notaMedia;
   private InputStream fotoPerfil;
   private String fechaCreacion;
+  private String contraseniaCifrada;
+
+  public Usuario(String nombre, String correo, String contrasenia,String contraseniaCifrada) {
+    this.nombre = nombre;
+    this.correo = correo;
+    this.contrasenia = contrasenia;
+    this.contraseniaCifrada = contraseniaCifrada;
+  }
 
   public Usuario(String nombre, String correo, String contrasenia) {
     this.nombre = nombre;
@@ -29,6 +37,14 @@ public class Usuario {
 
   public int getId() {
     return id;
+  }
+
+  public void setContraseniaCifrada(String contraseniaCifrada) {
+    this.contraseniaCifrada = contraseniaCifrada;
+  }
+
+  public String getContraseniaCifrada() {
+    return contraseniaCifrada;
   }
 
   public void setId(int id) {

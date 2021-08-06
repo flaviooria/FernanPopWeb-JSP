@@ -34,12 +34,48 @@
     <meta name="msapplication-TileColor" content="#3D5A80">
     <meta name="msapplication-TileImage" content="../assets/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#3D5A80">
+    <!-- Styles  -->
+    <link rel="stylesheet" href="../css/errGeneral.css">
+    <!--fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Raleway:wght@700;900&display=swap"
+            rel="stylesheet">
+    <!--fontawesome icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
 </head>
 <body>
-<h3><%=session.getAttribute("errOperacion")%></h3>
-<a href="./inicio.jsp">clik aquí para continuar</a>
-<%
-    session.removeAttribute("errOperacion");
+<div class="container">
+    <!-- Header -->
+    <header id="inicio">
+        <div class="logo">
+            <h1>Fernan<span class="orange">Pop</span></h1>
+        </div>
+    </header>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero__alert">
+            <h3 class="hero__alert-info"><%=session.getAttribute("errOperacion")%></h3>
+            <a href="./inicio.jsp" class="hero__alert-link">Haz click aquí.</a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p class="footer-rigth">® Derechos Reservados</p>
+        <a class="footer-designed" href="">Designed by @flaviooria</a>
+        <div class="about-media">
+            <ul>
+                <li><a href="" title="facebook/fernanpop.com"><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href=""><i class="fab fa-instagram-square"></i></a></li>
+                <li><a href=""><i class="fab fa-twitter-square"></i></a></li>
+                <li><a class="inicio" href="#inicio" title="Inicio"><i class="fas fa-arrow-circle-up"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<h3></h3>
+<%  session.removeAttribute("errOperacion");
     }%>
 </body>
 </html>

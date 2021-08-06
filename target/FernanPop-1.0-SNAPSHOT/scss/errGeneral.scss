@@ -1,0 +1,58 @@
+@use "body" as *;
+@use "./component/header" as *;
+@use "./component/fotter";
+
+
+.container {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+    @include flex();
+    padding: 8px;
+
+    .hero__alert {
+        @include flex();
+        flex-direction: column;
+        text-align: center;
+        background-color: aliceblue;
+        height: 300px;
+        border-radius: 8px;
+        width: 90%;
+        position: relative;
+        overflow: hidden;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 4px;
+            display: block;
+            background-color: $blue-metalic;
+        }
+        &-info {
+            color: $blue-sky;
+        }
+        &-link {
+            text-decoration: none;
+            color: $blue-metalic;
+            font-size: 1rem;
+            cursor: pointer;
+            &:hover {
+                color: $orange;
+            }
+        }
+    }
+
+    @media (min-width: breakpoint(tablet)) {
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+
