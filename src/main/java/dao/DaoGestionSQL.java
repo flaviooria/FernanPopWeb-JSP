@@ -530,6 +530,22 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
+    public boolean actulizarContraseniaCifrada(String contrasenia, String claveCifrada, String correoUser, DAOManager dao) {
+        String sql = "update usuarios set contrasenia = ?, contraseniaCifrada = ? where correo = ?";
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setString(1,contrasenia);
+            stmt.setString(2,claveCifrada);
+            stmt.setString(3,correoUser);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public boolean insertProducto(Producto producto, int id, DAOManager dao) {
         final String SQLINSERTPRODUCT = "insert into productos (nombre,descrip,precio,idUsuario,imagen) values (?,?,?,?,?) ";
         try {

@@ -91,6 +91,10 @@ public class Gestion {
         return daoGestionSQL.actualizarDatos(tipoDato, valor, correoUsuario, dao);
     }
 
+    public static boolean actualizarContrasenia(String pass,String claveCifrada,String correoUser) {
+        return daoGestionSQL.actulizarContraseniaCifrada(pass,claveCifrada,correoUser,dao);
+    }
+
     public static boolean actualizarFotoUsuario(InputStream avatarUser, int idUser) {
         return daoGestionSQL.insertarAvatarUsuario(avatarUser, idUser, dao);
     }

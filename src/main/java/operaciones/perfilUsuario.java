@@ -3,11 +3,15 @@ package operaciones;
 import modelos.Gestion;
 import modelos.Usuario;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static test.CifradoContrasenia.createSecretKey;
+import static test.CifradoContrasenia.encrypt;
 
 @MultipartConfig
 @WebServlet(name = "perfilUsuario", value = "/perfilUsuario")
@@ -88,7 +92,19 @@ public class perfilUsuario extends HttpServlet {
                         response.sendRedirect("./pages/editarPerfil.jsp");
                     } else cont++;
                     if (!contrasenia.isEmpty() && !contrasenia.equalsIgnoreCase(user.getContrasenia())) {
-                        if (Gestion.actualizarDatos("contrasenia", contrasenia, correoUser)) {
+                        String base64Password = "";
+                        try {
+                            //Genero la clave cifrada con la contraseña editada del usuario.
+                            byte[] salt = "12345678".getBytes();
+                            int iterationCount = 40000;
+                            int keyLength = 128;
+                            SecretKeySpec key = createSecretKey(contrasenia.toCharArray(), salt, iterationCount, keyLength);
+                            //Clave encriptada
+                            base64Password = encrypt(contrasenia,key);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (Gestion.actualizarContrasenia(contrasenia,base64Password,correoUser)) {
                             user.setContrasenia(contrasenia);
                             request.getSession().setAttribute("editada", "true");
                         } else {

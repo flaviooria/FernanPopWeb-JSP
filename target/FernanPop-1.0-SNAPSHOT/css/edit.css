@@ -567,7 +567,6 @@ footer {
     }
 
     .save-success {
-        display: none;
         font-size: 1.2em;
         text-align: left;
         margin-top: 50px;
@@ -713,7 +712,6 @@ footer {
     }
 
     .save-success {
-        display: none;
         font-size: 1.2em;
         text-align: center;
     }
