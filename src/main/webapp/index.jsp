@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
           integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
     <!-- Style of hamburger_menu -->
-    <link href="./dist/hamburgers.css" rel="stylesheet">
+    <link href="./css/hamburger-menu.css" rel="stylesheet">
     <!--Animations CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!--Animation AOS Scroll-->
