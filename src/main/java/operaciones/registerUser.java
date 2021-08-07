@@ -5,10 +5,9 @@
  */
 package operaciones;
 
-import comunicaciones.Email;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import modelos.Gestion;
+import modelos.Usuario;
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,17 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelos.Gestion;
-import modelos.Usuario;
-import plantillasHtml.NotificacionToken;
+import java.io.IOException;
 
 import static test.CifradoContrasenia.createSecretKey;
 import static test.CifradoContrasenia.encrypt;
 
-/**
- *
- * @author 2097k
- */
 @WebServlet(name = "registerUser", value = {"/registerUser"})
 public class registerUser extends HttpServlet {
 
@@ -64,12 +57,12 @@ public class registerUser extends HttpServlet {
                     byte[] salt = "12345678".getBytes();
                     int iterationCount = 40000;
                     int keyLength = 128;
-                    SecretKeySpec key = createSecretKey(pass.toCharArray(), salt, iterationCount, keyLength);
-                    base64Password = encrypt(pass,key);
+                    SecretKeySpec key = createSecretKey(pass.trim().toCharArray(), salt, iterationCount, keyLength);
+                    base64Password = encrypt(pass.trim(),key);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Usuario user = new Usuario(name,email,pass,base64Password);
+                Usuario user = new Usuario(name.trim(),email.trim(),pass.trim(),base64Password);
                 if (Gestion.registrarUsuario(user)) {
                     try {
                         Gestion.asignarTokenUsuario(Usuario.obtengoToken(),user);

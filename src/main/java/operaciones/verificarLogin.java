@@ -37,7 +37,7 @@ public class verificarLogin extends HttpServlet {
             response.sendRedirect("./index.jsp");
         } else {
             if (gestion != null) {
-                user = Gestion.login(email,pass);
+                user = Gestion.login(email.trim(),pass.trim());
                 if (user != null) {
                     //Si no esta autentificado el usuario le hacemos el auth y lo rederijimos a la página de cuenta registrada
                     if(!Gestion.isAutentificado(user)) {

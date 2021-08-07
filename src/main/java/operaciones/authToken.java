@@ -31,7 +31,7 @@ public class authToken extends HttpServlet {
         }
 
         if (gestion != null) {
-            if (tokenInput.equals(tokenUser)) {
+            if (tokenInput.trim().equals(tokenUser)) {
                 //autentifico el token
                 Gestion.setAutentificado(user);
                 //Borro el token de la sesión
