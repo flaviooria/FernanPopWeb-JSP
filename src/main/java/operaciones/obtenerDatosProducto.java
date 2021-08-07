@@ -33,7 +33,7 @@ public class obtenerDatosProducto extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
         String desc = request.getParameter("descrip");
-        int price = Integer.parseInt(request.getParameter("price"));
+        float price = Float.parseFloat(request.getParameter("price"));
         int idUser = Integer.parseInt(request.getParameter("id"));
         Part part = request.getPart("imgFile");
         InputStream inputStream = part.getInputStream();

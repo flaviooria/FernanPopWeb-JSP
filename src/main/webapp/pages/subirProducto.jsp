@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="descrip">Descripción</label>
-                    <textarea class="form-input" name="descrip"  id="descrip" cols="30" rows="5" maxlength="150"></textarea>
+                    <textarea class="form-input" name="descrip"  id="descrip" cols="30" rows="5" maxlength="200"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="price">Precio</label>

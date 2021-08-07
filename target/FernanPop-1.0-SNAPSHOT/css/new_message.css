@@ -306,7 +306,6 @@ header {
 .alert-failed {
     color: var(--orange);
     font-size: 1em;
-    display: none;
     margin-left: 10px;
 }
 

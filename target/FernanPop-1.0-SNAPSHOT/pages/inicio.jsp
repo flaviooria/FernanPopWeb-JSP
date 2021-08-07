@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList" %>
 <%@ page import="modelos.*" %>
 <%@ page import="java.util.Locale" %>
+<%@ page import="utilidades.Utils" %>
+<%@ page import="static utilidades.Utils.getNombreCompleto" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
@@ -23,7 +25,7 @@
         if (gestion != null) {
             user = (Usuario) session.getAttribute("user");
             System.out.println("pagina de inicio el user es = " + user);
-            nombrePefil = user.getNombre().substring(0, 1).toUpperCase() + user.getNombre().substring(1);
+            nombrePefil = getNombreCompleto(user);
             listProducts = Gestion.obtenerProductosByUser(user.getId());
             solicitudes = Gestion.mostrarSolicitudesByUsuario(user);
             valoracionesPendientes = Gestion.getValoracionPendiente(user);
@@ -161,7 +163,7 @@
                             <form action="./msg.jsp" class="form-notification num-msg">
                                 <p class="subject">Coversación pendiente</p>
                                 <p class="product">Asunto: <%=m.getAsunto()%></p>
-                                <p class="user">Enviado: <%=m.getEmisor().getNombre() + " " + m.getEmisor().getApellido()%></p>
+                                <p class="user">Enviado: <%=getNombreCompleto(m.getEmisor())%></p>
                                 <button type="submit" class="send-valorate">Ver</button>
                             </form>
                             <%}%>

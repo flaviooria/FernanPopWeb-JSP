@@ -6,11 +6,11 @@ public class Producto {
   private int id;
   private String nombre;
   private String descripcion;
-  private double precio;
+  private float precio;
   private InputStream imagenBlobData;
   private int idUsuarioPropietario;
 
-  public Producto(String nombre, String descripcion, double precio) {
+  public Producto(String nombre, String descripcion, float precio) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precio = precio;
@@ -48,11 +48,11 @@ public class Producto {
     this.descripcion = descripcion;
   }
 
-  public double getPrecio() {
+  public float getPrecio() {
     return precio;
   }
 
-  public void setPrecio(double precio) {
+  public void setPrecio(float precio) {
     this.precio = precio;
   }
 

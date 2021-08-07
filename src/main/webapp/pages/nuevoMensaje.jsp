@@ -21,6 +21,7 @@
         Usuario vendedor = null;
         if (session.getAttribute("userVendedor") != null) {
             vendedor = (Usuario) session.getAttribute("userVendedor");
+            session.setAttribute("recuperarVendedor",vendedor);
             session.removeAttribute("userVendedor");
         }
 

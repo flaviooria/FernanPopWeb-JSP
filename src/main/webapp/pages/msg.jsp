@@ -163,26 +163,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
     //Funcion para pintar el chat!!!
-    /*$(".content .form button").on("click", ajax);
-    function ajax() {
-        chat.innerHTML = " ";
-        console.log($(".idChat").val());
-        $.ajax({
-            url: "${pageContext.request.contextPath}/pages/chat.jsp",
-            async: true,
-            data : {
-                idChat : $(".idChat").val(),
-                accion: $(".accion").val()
-            },
-            success: function (data) {
-                $(".chat-item").append(data);
-            },
-            error: function () {
-                console.log("error");
-            }
-        })
-    }*/
-
     let form = document.querySelectorAll(".form button");
 
     form.forEach(item => {

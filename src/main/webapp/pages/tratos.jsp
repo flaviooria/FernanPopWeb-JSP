@@ -142,8 +142,8 @@
                 <p class="description"><%=t.getComentario()%></p>
             </div>
         </div>
+        <% } %>
     </section>
-    <% } %>
     <% } %>
     <!-- Footer -->
     <footer>

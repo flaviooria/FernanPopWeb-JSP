@@ -209,6 +209,7 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
                 Producto p = obtenerProductoById(idProducto, dao);
                 sp = new SolicitudProducto(correoComprador, p, nombreComprador);
                 sp.setFechaSolicitud(fechaSolicitud);
+                sp.setId(rs.getInt("id"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -413,7 +414,7 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     @Override
     public int obtenerIdTrato(String nombreProducto, DAOManager dao) {
         final String SQLSELECTIDTRATO = "select id from tratos where tipo=" + "'venta'" + " and " +
-                "nombreProducto='" + nombreProducto + "'and comentario is null and puntuacion=0";
+                "nombreProducto='" + nombreProducto + "'and comentario = 'Sin comentario.' and puntuacion=0";
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(SQLSELECTIDTRATO);
             ResultSet rs = stmt.executeQuery();
