@@ -37,40 +37,33 @@ public class obtenerDatosProducto extends HttpServlet {
         int idUser = Integer.parseInt(request.getParameter("id"));
         Part part = request.getPart("imgFile");
         InputStream inputStream = part.getInputStream();
-        System.out.println(part.getName());
-        System.out.println(name);
-        System.out.println(desc);
-
-        request.setAttribute("name", name);
-        request.setAttribute("desc",desc);
-        request.setAttribute("price",price);
 
         Producto producto;
         Gestion gestion = null;
 
         if (name.isEmpty() ||desc.isEmpty() || price < 0) {
-            request.setAttribute("failed","true");
-            request.getRequestDispatcher("./pages/subirProducto.jsp").forward(request,response);
-        }
-
-        try {
-            gestion = new Gestion();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (gestion != null) {
-            producto = new Producto(name,desc,price);
-            producto.setImagenBlobData(inputStream);
-            if (Gestion.insertarProducto(producto,idUser)) {
-                response.sendRedirect("./pages/inicio.jsp");
-            }  else {
-                request.getSession().setAttribute("errOperacion","No se pudo insertar el producto.");
-                response.sendRedirect("./pages/errorOperaciones.jsp");
-            }
+            request.getSession().setAttribute("failed","true");
+            response.sendRedirect("./pages/subirProducto.jsp");
         } else {
-            request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
-            response.sendRedirect("./pages/error.jsp");
+            try {
+                gestion = new Gestion();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (gestion != null) {
+                producto = new Producto(name.trim(),desc.trim(),price);
+                producto.setImagenBlobData(inputStream);
+                if (Gestion.insertarProducto(producto,idUser)) {
+                    response.sendRedirect("./pages/inicio.jsp");
+                }  else {
+                    request.getSession().setAttribute("errOperacion","No se pudo insertar el producto.");
+                    response.sendRedirect("./pages/errorOperaciones.jsp");
+                }
+            } else {
+                request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");
+                response.sendRedirect("./pages/error.jsp");
+            }
         }
 
     }

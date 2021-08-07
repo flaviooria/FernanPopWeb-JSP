@@ -93,9 +93,9 @@
                 <input type="hidden" name="extImg" class="extImg">
                 <%
                     Usuario user = (Usuario) session.getAttribute("user");
-                    if (request.getAttribute("failed") != null) {
-                    if (request.getAttribute("failed").equals("true")) {
-                        request.removeAttribute("failed");
+                    if (session.getAttribute("failed") != null) {
+                    if (session.getAttribute("failed").equals("true")) {
+                        session.removeAttribute("failed");
                 %>
                 <p class="alert-failed" style="display: block">No se pudo guardar los datos, debes de llenar los campos correctamente.</p>
                 <% }  }%>
