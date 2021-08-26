@@ -2,6 +2,7 @@ package operaciones;
 
 import modelos.Gestion;
 import modelos.Usuario;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.*;
@@ -54,10 +55,10 @@ public class perfilUsuario extends HttpServlet {
                     String nombre, apellido, correo, contrasenia;
                     int movil, edad, cont = 0;
 
-                    nombre = request.getParameter("name");
-                    apellido = request.getParameter("lastname");
-                    correo = request.getParameter("email");
-                    contrasenia = request.getParameter("pass");
+                    nombre = StringEscapeUtils.escapeHtml4(request.getParameter("name"));
+                    apellido = StringEscapeUtils.escapeHtml4(request.getParameter("lastname"));
+                    correo = StringEscapeUtils.escapeHtml4(request.getParameter("email"));
+                    contrasenia = StringEscapeUtils.escapeHtml4(request.getParameter("pass"));
                     Part avatar = request.getPart("avatar");
                     InputStream avatarUser = avatar.getInputStream();
 
@@ -116,7 +117,7 @@ public class perfilUsuario extends HttpServlet {
 
                     if (request.getParameter("phone").length() == 9 &&
                             !request.getParameter("phone").isEmpty()) {
-                        movil = Integer.parseInt(request.getParameter("phone"));
+                        movil = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("phone")));
                         if (movil != user.getMovil()) {
                             if (Gestion.actualizarDatos("movil", String.valueOf(movil),
                                     correoUser)) {
@@ -131,7 +132,7 @@ public class perfilUsuario extends HttpServlet {
 
                     if (request.getParameter("age").length() == 2 &&
                             !request.getParameter("age").isEmpty()) {
-                        edad = Integer.parseInt(request.getParameter("age"));
+                        edad = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("age")));
                         if (edad != user.getEdad()) {
                             if (Gestion.actualizarDatos("edad", String.valueOf(edad),
                                     correoUser)) {
@@ -144,7 +145,9 @@ public class perfilUsuario extends HttpServlet {
                         }
                     } else cont++;
 
+                    //Aqui si el tamaño del avatar es mayor es porque se ha subido una foto
                     if (avatar.getSize() > 0) {
+                        //Actualizo la foto si es null
                         if (user.getFotoPerfil() == null) {
                             if (Gestion.actualizarFotoUsuario(avatarUser, id)) {
                                 user.setFotoPerfil(avatarUser);
@@ -154,6 +157,7 @@ public class perfilUsuario extends HttpServlet {
                             }
                             response.sendRedirect("./pages/editarPerfil.jsp");
                         } else {
+                            //Si la foto es diferente, es decir si se ha subido una nueva, se guarda esta.
                             if (avatarUser.available() != user.getFotoPerfil().available()) {
                                 if (Gestion.actualizarFotoUsuario(avatarUser, id)) {
                                     user.setFotoPerfil(avatarUser);

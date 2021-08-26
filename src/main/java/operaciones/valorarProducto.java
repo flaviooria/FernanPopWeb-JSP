@@ -1,6 +1,7 @@
 package operaciones;
 
 import modelos.Gestion;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -17,8 +18,8 @@ public class valorarProducto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        int idTrato = Integer.parseInt(request.getParameter("idTrato"));
-        String comentario = request.getParameter("comentario");
+        int idTrato = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("idTrato")));
+        String comentario = StringEscapeUtils.escapeHtml4(request.getParameter("comentario"));
         int puntuacion = 0;
         boolean todoOk = true;
 
@@ -34,7 +35,7 @@ public class valorarProducto extends HttpServlet {
             response.sendRedirect("./pages/valorarProducto.jsp?idTrato="+idTrato);
             todoOk = false;
         } else {
-            puntuacion = Integer.parseInt(request.getParameter("puntuacion"));
+            puntuacion = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("puntuacion")));
             if (puntuacion < 1 || puntuacion > 5) {
                 request.getSession().setAttribute("failed", "true");
                 response.sendRedirect("./pages/valorarProducto.jsp?idTrato="+idTrato);

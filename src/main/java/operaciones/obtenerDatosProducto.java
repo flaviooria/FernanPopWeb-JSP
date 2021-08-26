@@ -7,6 +7,7 @@ package operaciones;
 
 import modelos.Gestion;
 import modelos.Producto;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,10 +32,13 @@ public class obtenerDatosProducto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String name = request.getParameter("name");
-        String desc = request.getParameter("descrip");
-        float price = Float.parseFloat(request.getParameter("price"));
-        int idUser = Integer.parseInt(request.getParameter("id"));
+        /*
+        El stringEscapeUtils sirve para evitar las injeciones xss !!!
+         */
+        String name = StringEscapeUtils.escapeHtml4(request.getParameter("name"));
+        String desc = StringEscapeUtils.escapeHtml4(request.getParameter("descrip"));
+        float price = Float.parseFloat(StringEscapeUtils.escapeHtml4(request.getParameter("price")));
+        int idUser = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("id")));
         Part part = request.getPart("imgFile");
         InputStream inputStream = part.getInputStream();
 

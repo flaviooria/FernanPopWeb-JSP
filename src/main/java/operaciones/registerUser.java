@@ -7,6 +7,7 @@ package operaciones;
 
 import modelos.Gestion;
 import modelos.Usuario;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
@@ -35,9 +36,9 @@ public class registerUser extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         String name,email,pass;
-        name = request.getParameter("name");
-        email = request.getParameter("email");
-        pass = request.getParameter("pass");
+        name = StringEscapeUtils.escapeHtml4(request.getParameter("name"));
+        email = StringEscapeUtils.escapeHtml4(request.getParameter("email"));
+        pass = StringEscapeUtils.escapeHtml4(request.getParameter("pass"));
         Gestion gestion = null;
             
         try {

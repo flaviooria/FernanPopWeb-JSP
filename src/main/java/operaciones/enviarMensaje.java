@@ -3,6 +3,7 @@ package operaciones;
 import modelos.Gestion;
 import modelos.Producto;
 import modelos.Usuario;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,8 +24,11 @@ public class enviarMensaje extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Usuario vendedor = (Usuario) request.getSession().getAttribute("recuperarVendedor");
         request.getSession().removeAttribute("recuperarVendedor");
-        String mensaje = request.getParameter("mensaje");
-        String asunto = request.getParameter("asunto");
+        /*
+        El stringEscapeUtils sirve para evitar las injeciones xss !!!
+         */
+        String mensaje = StringEscapeUtils.escapeHtml4(request.getParameter("mensaje"));
+        String asunto = StringEscapeUtils.escapeHtml4(request.getParameter("asunto"));
 
         if (request.getParameter("user") == null ||request.getParameter("user").isEmpty() ||
                 mensaje == null ||  mensaje.isEmpty() || asunto == null || asunto.isEmpty()) {

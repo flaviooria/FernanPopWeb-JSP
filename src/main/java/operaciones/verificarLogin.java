@@ -2,6 +2,7 @@ package operaciones;
 
 import modelos.Gestion;
 import modelos.Usuario;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,8 +19,8 @@ public class verificarLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
+        String email = StringEscapeUtils.escapeHtml4(request.getParameter("email"));
+        String pass = StringEscapeUtils.escapeHtml4(request.getParameter("pass"));
         System.out.println("email, " + email);
         System.out.println("pass, " + pass);
 

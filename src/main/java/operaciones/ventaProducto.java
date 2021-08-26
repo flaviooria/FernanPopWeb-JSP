@@ -5,6 +5,7 @@ import modelos.Gestion;
 import modelos.Producto;
 import modelos.Trato;
 import modelos.Usuario;
+import org.apache.commons.lang3.StringEscapeUtils;
 import plantillasHtml.NotificacionCompra;
 import plantillasHtml.NotificacionPendiente;
 
@@ -48,11 +49,11 @@ public class ventaProducto extends HttpServlet {
             request.getSession().setAttribute("failed", "true");
             response.sendRedirect("./pages/ventaProducto.jsp");
         } else {
-            String correoComprador = request.getParameter("correoComprador");
+            String correoComprador = StringEscapeUtils.escapeHtml4(request.getParameter("correoComprador"));
             Usuario comprador = Gestion.obtenerUsuarioByCorreo(correoComprador);
-            String comentario = request.getParameter("comentario");
-            float precioFinal = Float.parseFloat((request.getParameter("precioFinal")));
-            int puntuacion = Integer.parseInt((request.getParameter("puntuacion")));
+            String comentario = StringEscapeUtils.escapeHtml4(request.getParameter("comentario"));
+            float precioFinal = Float.parseFloat(StringEscapeUtils.escapeHtml4(request.getParameter("precioFinal")));
+            int puntuacion = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("puntuacion")));
 
             try {
                 gestion = new Gestion();

@@ -425,10 +425,7 @@ footer {
     }
 
     .content-title {
-        width: 210px;
-        white-space: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        overflow: initial;
         font-family: var(--fuente-titulos);
         font-size: 1.595em;
         color: var(--color-texto);
