@@ -94,6 +94,7 @@
                 <li><a class="link" href="../pages/subirProducto.jsp">Subir Producto</a></li>
                 <li><a class="link" href="../pages/productos.jsp">Ver Productos</a></li>
                 <li><a class="link" href="../pages/tratos.jsp">Ver mis tratos</a></li>
+                <li><a class="link" href="../pages/msg.jsp">Ver mis mensajes</a></li>
                 <li><a class="link" href="./cerrarSesion.jsp">Cerrar Sesión</a></li>
             </ul>
         </nav>

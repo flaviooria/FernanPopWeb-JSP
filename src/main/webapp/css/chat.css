@@ -101,8 +101,6 @@ header {
     margin-bottom: 10px;
     font-size: 1.2em;
     cursor: pointer;
-    margin: 0;
-    padding: 0;
     text-decoration: none;
     color: #97c0d8;
     background-color: rgba(117, 127, 138, 0.3);
@@ -141,7 +139,6 @@ header {
 /* Hero */
 .hero {
     grid-row: 3 / 4;
-    margin-bottom: 30px;
 }
 
 .hero-title {
@@ -174,18 +171,9 @@ header {
     left: 0;
 }
 
-.chats input#tab1:checked~.content-chats #received {
-    opacity: 1;
-}
-
 .chats input#tab2:checked~.line {
     left: 50%;
 }
-
-.chats input#tab2:checked~.content-chats #sends {
-    opacity: 1;
-}
-
 .chats label {
     display: inline-block;
     font-size: 16px;
@@ -204,6 +192,7 @@ header {
     left: -100%;
 }
 
+/* Borde que se posiciona al hacer hover en los labels */
 .chats label::after {
     content: "";
     height: 2px;
@@ -232,6 +221,7 @@ header {
 }
 
 .chats .content-chats {
+    display: block;
     background: #e7e7e7;
     position: relative;
     height: 350px;
@@ -250,7 +240,6 @@ header {
 .content-chats::-webkit-scrollbar-thumb {
     background: rgb(78, 102, 135);
     border-radius: 5px;
-    width: -12px;
     overflow: hidden;
 }
 
@@ -259,7 +248,6 @@ header {
     padding: 5px;
     width: 95%;
     top: 0;
-    opacity: 0;
     transition: 0.25s ease;
     color: #313948;
 }
@@ -287,8 +275,9 @@ header {
 .form button {
     grid-row: 3 / -1;
     width: 50%;
-    margin: 0 auto;
+    justify-self: end;
     padding: 5px;
+    margin-bottom: 15px;
     border-radius: 5px 0 5px 0;
     background-color: rgba(143, 156, 173, 0.3);
     font-family: var(--fuente-titulos);
@@ -537,8 +526,8 @@ footer {
         width: 80%;
         margin: 0 auto;
         margin-bottom: 30px;
-    } 
-    
+    }
+
     .hover {
         top: 78%;
         left: 18%;
@@ -556,7 +545,7 @@ footer {
         margin: 0 auto;
         width: 80%;
         text-align: center;
-        border: 1px solid ridge;
+        /*border: 1px solid ridge;*/
     }
 
     .alert-lottie {

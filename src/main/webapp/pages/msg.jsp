@@ -13,26 +13,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Usuario user = (Usuario) session.getAttribute("user");
-    ArrayList<Mensaje> mensajesEnviados = new ArrayList<>();
-    ArrayList<Mensaje> mensajesRecibidos = new ArrayList<>();
     System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");
     } else {
-        Gestion gestion = null;
-        try {
-            gestion = new Gestion();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (gestion != null) {
-            mensajesEnviados = Gestion.mensajesEnviados(user.getId());
-            mensajesRecibidos = Gestion.mensajesRecibidos(user.getId());
-        } else {
-            session.setAttribute("error", "No se pudo conectar a la base de datos.");
-            response.sendRedirect("./error.jsp");
-        }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,40 +88,13 @@
     <div class="hero">
         <p class="hero-title">Mensajes</p>
         <div class="chats">
-            <input type="radio" id="tab1" name="tab" checked>
-            <label for="tab1" class="tab1"><i class="fas fa-envelope-open"></i> Recibidos</label>
+            <input type="radio"  id="tab1" name="tab" checked>
+            <label for="tab1" onclick="getListOfMessages('recibido')" class="tab1"><i class="fas fa-envelope-open"></i> Recibidos</label>
             <input type="radio" id="tab2" name="tab">
-            <label for="tab2" class="tab2"><i class="fas fa-paper-plane"></i> Enviados</label>
+            <label for="tab2" onclick="getListOfMessages('enviado')" class="tab2"><i class="fas fa-paper-plane"></i> Enviados</label>
             <div class="line"></div>
             <div class="content-chats">
-                <div class="content" id="received">
-                    <%
-                        for (Mensaje m: mensajesRecibidos) {
-                            String allNombre = Utils.getNombreCompleto(m.getEmisor());
-                    %>
-                    <form action="" class="form">
-                        <p class="user">Enviado por: <%=allNombre%></p>
-                        <p class="subject">Asunto: <%=m.getAsunto()%></p>
-                        <input type="hidden" name="idChat" class="idChat" value="<%=m.getId()%>">
-                        <input type="hidden" name="accion" class="accion" value="recibido">
-                        <button type="button">Chat</button>
-                    </form>
-                    <% }%>
-                </div>
-                <div class="content" id="sends">
-                    <%
-                        for (Mensaje m: mensajesEnviados) {
-                            String allNombre = Utils.getNombreCompleto(m.getReceptor());
-                    %>
-                    <form action="" class="form">
-                        <p class="user">Recibido por: <%=allNombre%></p>
-                        <p class="subject">Asunto: <%=m.getAsunto()%></p>
-                        <input type="hidden" name="idChat" class="idChat" value="<%=m.getId()%>">
-                        <input type="hidden" name="accion" class="accion" value="enviado">
-                        <button type="button">Chat</button>
-                    </form>
-                    <%}%>
-                </div>
+                <div class="content"></div>
                 <div class="chat-item"></div>
             </div>
         </div>
@@ -162,34 +120,27 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
-    //Funcion para pintar el chat!!!
-    let form = document.querySelectorAll(".form button");
-
-    form.forEach(item => {
-        item.addEventListener("click", (e) => {
-            chat.innerHTML = " ";
-            let item = e.target;
-            let form = item.parentElement;
-            let idChat = form.children.item(2).value;
-            let accion = form.children.item(3).value;
-
-            console.log(idChat);
-            console.log(accion)
-
-            //Llamada ajax a la pagina de chat
-            let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    console.log(this.responseText);
-                    chat.innerHTML = this.responseText;
-                }
-            };
-
-            xhttp.open("GET","${pageContext.request.contextPath}/pages/chat.jsp?idChat="+idChat+"&accion="+accion,true);
-            xhttp.send();
+    let contenListMessages = document.querySelector(".content")
+    //función que retorna la página con la lista de mensajes
+    function getListOfMessages(accion) {
+        chat.innerHTML = ""
+        fetch("${pageContext.request.contextPath}/pages/listOfMessage.jsp?accion="+accion)
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+            contenListMessages.innerHTML = data
         })
-    })
-
+    }
+    //función que retorna el contenido del mensaje.
+    function getContentMessage(id, accion) {
+        contenListMessages.innerHTML = ""
+        fetch("${pageContext.request.contextPath}/pages/chat.jsp?idChat="+id+"&accion="+accion)
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+            chat.innerHTML = data
+        })
+    }
 </script>
 <script src="../js/chat.js"></script>
 </body>
