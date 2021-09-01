@@ -15,7 +15,6 @@
         response.sendRedirect("./error.jsp");
     } else {
         String nombre = user.getNombre().substring(0,1).toUpperCase() + user.getNombre().substring(1);
-        System.out.println("El token es: " +token);
 %>
 <html lang="en">
 <head>

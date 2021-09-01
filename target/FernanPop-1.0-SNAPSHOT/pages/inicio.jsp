@@ -24,7 +24,6 @@
         }
         if (gestion != null) {
             user = (Usuario) session.getAttribute("user");
-            System.out.println("pagina de inicio el user es = " + user);
             nombrePefil = getNombreCompleto(user);
             listProducts = Gestion.obtenerProductosByUser(user.getId());
             solicitudes = Gestion.mostrarSolicitudesByUsuario(user);

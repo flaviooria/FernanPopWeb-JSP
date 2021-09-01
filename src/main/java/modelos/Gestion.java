@@ -188,6 +188,10 @@ public class Gestion {
         return -1;
     }
 
+    public static int comprobarQueNoSeRepitaSolicitud(int idProducto,String correoUser) {
+        return daoGestionSQL.comprobarQueNoSeRepitaSolicitud(idProducto,correoUser,dao);
+    }
+
     /**
      * @param idProducto    la id que nos servira para obtener el producto como resultado.
      * @param correoUsuario el correo del usuario que esta comprando el producto

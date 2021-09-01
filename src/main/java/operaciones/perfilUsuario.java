@@ -26,7 +26,6 @@ public class perfilUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
-        System.out.println("usuario para editar es: " + user);
         String accion = request.getParameter("accion");
         int id = user.getId();
 

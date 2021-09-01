@@ -17,6 +17,7 @@ public interface DaoGestion {
   public ArrayList<SolicitudProducto> mostrarSolicitudes(Usuario u,DAOManager dao);
   public SolicitudProducto obtenerSolicitudById(int idSolicitud, DAOManager dao);
   public boolean borraSolicitudProducto(int id,DAOManager dao);
+  public int comprobarQueNoSeRepitaSolicitud(int idProducto,String correoUser,DAOManager dao);
   public ArrayList<Integer> obtenerValoracionesPendientesByUsuarioID(String correoUsuario,DAOManager dao);
   public boolean borrarValoracionPendiente(int id,DAOManager dao);
   public boolean borrarUsuario(int id,DAOManager dao);

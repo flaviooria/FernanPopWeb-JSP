@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Usuario user = (Usuario) session.getAttribute("user");
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error","Usuario no identificado.");
         response.sendRedirect("./error.jsp");

@@ -122,13 +122,24 @@ end$
 delimiter ;
 
 delimiter $
-drop trigger if exists notaMedia;
-create trigger notaMedia
+drop trigger if exists generaNotaMediaAlHacerInsert;
+create trigger generaNotaMediaAlHacerInsert
 AFTER INSERT on tratos
 for each ROW
 begin
 set @nota = (select avg(puntuacion) from tratos where idUsuario = new.idUsuario);
 update usuarios set notaMedia = @nota where id = new.idUsuario;
+end$
+delimiter ;
+
+delimiter $
+drop trigger if exists generaNotaMediaAlHacerUpdate;
+create trigger generaNotaMediaAlHacerUpdate
+    AFTER UPDATE on tratos
+    for each ROW
+begin
+    set @nota = (select avg(puntuacion) from tratos where idUsuario = new.idUsuario);
+    update usuarios set notaMedia = @nota where id = new.idUsuario;
 end$
 delimiter ;
 

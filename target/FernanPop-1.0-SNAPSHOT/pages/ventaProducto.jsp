@@ -12,7 +12,6 @@
     request.setCharacterEncoding("UTF-8");
     Usuario user = (Usuario) session.getAttribute("user");
     SolicitudProducto sp = null;
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error","Usuario no identificado.");
         response.sendRedirect("./error.jsp");
@@ -25,8 +24,13 @@
         }
 
         if (gestion !=  null) {
-            int idSolicitud = Integer.parseInt(request.getParameter("idSolicitud"));
-            sp  = Gestion.obtenerSolicitudById(idSolicitud);
+            int idSolicitud;
+            if (request.getParameter("idSolicitud") != null) {
+                idSolicitud = Integer.parseInt(request.getParameter("idSolicitud"));
+                session.setAttribute("idPSolicitado",idSolicitud);
+            }
+            sp  = Gestion.obtenerSolicitudById((Integer) session.getAttribute("idPSolicitado"));
+
 
         } else {
             request.getSession().setAttribute("error","No se pudo conectar a la base de datos.");

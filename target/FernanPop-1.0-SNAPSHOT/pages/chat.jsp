@@ -10,8 +10,6 @@
 <%
     int idChat = Integer.parseInt(request.getParameter("idChat"));
     String accion = request.getParameter("accion");
-    System.out.println("el id chat es: "+ idChat);
-    System.out.println(accion);
     Mensaje msg = null;
     Gestion gestion = null;
     String fecha = " ";

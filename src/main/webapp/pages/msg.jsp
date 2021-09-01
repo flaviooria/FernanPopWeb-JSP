@@ -13,7 +13,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Usuario user = (Usuario) session.getAttribute("user");
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");
@@ -120,6 +119,9 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
+
+    window.addEventListener("load",() => getListOfMessages('recibido'))
+
     let contenListMessages = document.querySelector(".content")
     //función que retorna la página con la lista de mensajes
     function getListOfMessages(accion) {
@@ -127,7 +129,6 @@
         fetch("${pageContext.request.contextPath}/pages/listOfMessage.jsp?accion="+accion)
         .then(response => response.text())
         .then(data => {
-            console.log(data)
             contenListMessages.innerHTML = data
         })
     }
@@ -137,7 +138,6 @@
         fetch("${pageContext.request.contextPath}/pages/chat.jsp?idChat="+id+"&accion="+accion)
         .then(response => response.text())
         .then(data => {
-            console.log(data)
             chat.innerHTML = data
         })
     }

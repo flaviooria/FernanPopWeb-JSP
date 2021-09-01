@@ -12,7 +12,6 @@
     Usuario user = (Usuario) session.getAttribute("user");
     Usuario userVendedor = new Usuario();
     Trato t = new Trato();
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");

@@ -232,6 +232,27 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
+    public int comprobarQueNoSeRepitaSolicitud(int idProducto, String correoUser, DAOManager dao) {
+        final String sql = "select count(*)  \"numSolicitudes\" from productosSolicitados where correoComprador = ? " +
+                "and idProductoSolicitado = ?";
+        int numVeces = -1;
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setString(1,correoUser);
+            stmt.setInt(2,idProducto);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                 numVeces = rs.getInt("numSolicitudes");
+            }
+            return numVeces;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return numVeces;
+    }
+
+    @Override
     public boolean generarTratoVenta(String tipo, String correoUsuario, String nombreProducto, int idUsuario,
                                      float precio, InputStream imgProducto, DAOManager dao) {
         final String SQLINSERTTRATOVENTA = "insert into tratos (tipo,correoUsuario,nombreProducto,idUsuario,precio,imgProducto) " +

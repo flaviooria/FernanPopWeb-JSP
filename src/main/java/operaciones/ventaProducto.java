@@ -30,45 +30,45 @@ public class ventaProducto extends HttpServlet {
         int idProducto = Integer.parseInt(request.getParameter("idProducto"));
         Producto productoVendido = Gestion.obtenerProductoById(idProducto);
         Usuario vendedor = (Usuario) request.getSession().getAttribute("user");
+        String correoComprador = StringEscapeUtils.escapeHtml4(request.getParameter("correoComprador"));
+        Usuario comprador = Gestion.obtenerUsuarioByCorreo(correoComprador);
 
         ArrayList<String> requests = new ArrayList<>();
-        requests.add(request.getParameter("correoComprador"));
         requests.add(request.getParameter("comentario"));
         requests.add(request.getParameter("precioFinal"));
         requests.add(request.getParameter("puntuacion"));
         boolean hayError = false;
 
-        for (String s:requests) {
+        for (String s : requests) {
             if (s.isEmpty()) {
                 hayError = true;
                 break;
             }
         }
 
-        if (hayError) {
-            request.getSession().setAttribute("failed", "true");
-            response.sendRedirect("./pages/ventaProducto.jsp");
-        } else {
-            String correoComprador = StringEscapeUtils.escapeHtml4(request.getParameter("correoComprador"));
-            Usuario comprador = Gestion.obtenerUsuarioByCorreo(correoComprador);
-            String comentario = StringEscapeUtils.escapeHtml4(request.getParameter("comentario"));
-            float precioFinal = Float.parseFloat(StringEscapeUtils.escapeHtml4(request.getParameter("precioFinal")));
-            int puntuacion = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("puntuacion")));
+        try {
+            gestion = new Gestion();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            try {
-                gestion = new Gestion();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (gestion != null) {
+            switch (accion) {
+                case "vender":
+                    //Si hay algun campo no valido retorna un error
+                    if (hayError) {
+                        request.getSession().setAttribute("failed", "true");
+                        response.sendRedirect("./pages/ventaProducto.jsp");
+                    } else {
+                        String comentario = StringEscapeUtils.escapeHtml4(request.getParameter("comentario"));
+                        float precioFinal = Float.parseFloat(StringEscapeUtils.escapeHtml4(request.getParameter("precioFinal")));
+                        int puntuacion = Integer.parseInt(StringEscapeUtils.escapeHtml4(request.getParameter("puntuacion")));
 
-            if (gestion != null) {
-                switch (accion) {
-                    case "vender":
                         if (productoVendido == null) {
                             request.getSession().setAttribute("errOperacion", "Producto no existente.");
                             response.sendRedirect("./pages/errorOperaciones.jsp");
                         } else {
-                            if ( precioFinal < 1 || (puntuacion < 1 || puntuacion > 5)) {
+                            if (precioFinal < 1 || (puntuacion < 1 || puntuacion > 5)) {
                                 request.getSession().setAttribute("failed", "true");
                                 response.sendRedirect("./pages/ventaProducto.jsp");
                             } else {
@@ -102,6 +102,7 @@ public class ventaProducto extends HttpServlet {
                                             Email.seEnviaElEmail(correoComprador, mensajeVenta, "Compra satisfactoria.");
                                             Email.seEnviaElEmail(correoComprador, notificacionPendiente, "Notificación pendiente de compra.");
 
+                                            request.getSession().removeAttribute("idPSolicitado");
                                             request.getSession().setAttribute("exito", "Venta generada correctamente.");
                                             response.sendRedirect("./pages/exitosa.jsp");
                                         } else {
@@ -119,26 +120,25 @@ public class ventaProducto extends HttpServlet {
                                 }
                             }
                         }
+                    }
 
-                        break;
-                    case "borrar":
-                        int solicitudPendiente = Gestion.obtenerIdSolicitud(vendedor, comprador, productoVendido);
-                        if (Gestion.borrarSolicitudPendiente(solicitudPendiente)) {
-                            request.getSession().setAttribute("exito", "Solicitud borrada correctamente.");
-                            response.sendRedirect("./pages/exitosa.jsp");
-                        } else {
-                            request.getSession().setAttribute("errOperacion", "No se pudo borrar la solicitud, intentalo de nuevo.");
-                            response.sendRedirect("./pages/errorOperaciones.jsp");
-                        }
-                        break;
-                }
-
-            } else {
-                request.getSession().setAttribute("error", "No se pudo conectar a la base de datos.");
-                response.sendRedirect("./pages/error.jsp");
+                    break;
+                case "borrar":
+                    int solicitudPendiente = Gestion.obtenerIdSolicitud(vendedor, comprador, productoVendido);
+                    if (Gestion.borrarSolicitudPendiente(solicitudPendiente)) {
+                        request.getSession().setAttribute("exito", "Solicitud borrada correctamente.");
+                        response.sendRedirect("./pages/exitosa.jsp");
+                    } else {
+                        request.getSession().setAttribute("errOperacion", "No se pudo borrar la solicitud, intentalo de nuevo.");
+                        response.sendRedirect("./pages/errorOperaciones.jsp");
+                    }
+                    break;
             }
-        }
 
+        } else {
+            request.getSession().setAttribute("error", "No se pudo conectar a la base de datos.");
+            response.sendRedirect("./pages/error.jsp");
+        }
 
     }
 }

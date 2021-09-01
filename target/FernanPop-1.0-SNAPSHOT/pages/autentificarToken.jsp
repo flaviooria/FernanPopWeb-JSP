@@ -13,7 +13,6 @@
     session.setAttribute("error", "Debes de loguearte.");
     response.sendRedirect("./error.jsp");
   } else {
-    System.out.println("el tokeAuth es: "+ token);
 %>
 <!DOCTYPE html>
 <html lang="en">

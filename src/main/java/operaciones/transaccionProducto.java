@@ -39,14 +39,28 @@ public class transaccionProducto extends HttpServlet {
                         request.getSession().setAttribute("request","err1");
                         response.sendRedirect("./pages/detalleProducto.jsp");
                     } else {
-                        // Aqui añado la solicitud
-                        if (Gestion.aniadirProductSolicitado(producto, usuario)){
-                            request.getSession().setAttribute("request","exito");
-                            response.sendRedirect("./pages/detalleProducto.jsp");
-                        } else { // Si surge un problema mando el error
+                        //Aquí compruebo que no se vuelva a solicitar el mismo producto con el mismo usuario.
+                        int numVecesSolicitado = Gestion.comprobarQueNoSeRepitaSolicitud(idProducto,usuario.getCorreo());
+                        if ( numVecesSolicitado != -1) {
+                            //Es decir que nunca se ha solicitado, asi que procedemos.
+                            if (numVecesSolicitado == 0) {
+                                // Añado la solicitud
+                                if (Gestion.aniadirProductSolicitado(producto, usuario)){
+                                    request.getSession().setAttribute("request","exito");
+                                    response.sendRedirect("./pages/detalleProducto.jsp");
+                                } else { // Si surge un problema mando el error
+                                    request.getSession().setAttribute("request","err2");
+                                    response.sendRedirect("./pages/detalleProducto.jsp");
+                                }
+                            } else {
+                                request.getSession().setAttribute("request","err2.1");
+                                response.sendRedirect("./pages/detalleProducto.jsp");
+                            }
+                        } else {
                             request.getSession().setAttribute("request","err2");
                             response.sendRedirect("./pages/detalleProducto.jsp");
                         }
+
                     }
                     break;
                 case "chat":

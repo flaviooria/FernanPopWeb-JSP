@@ -96,7 +96,6 @@
                 </div>
                 <%
                     String failed = (String) session.getAttribute("failed");
-                    System.out.println(failed);
                     if (failed != null) {
                         if (failed.equals("true")) {
                             session.removeAttribute("failed");

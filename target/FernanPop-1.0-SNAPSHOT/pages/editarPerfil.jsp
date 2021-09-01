@@ -10,7 +10,6 @@
 <%
     request.setCharacterEncoding("UTF-8");
     Usuario user = (Usuario) session.getAttribute("user");
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error","Usuario no identificado.");
         response.sendRedirect("./error.jsp");
@@ -113,7 +112,6 @@
                     <%
 
                         if(userPerfil.getFotoPerfil() != null && userPerfil.getFotoPerfil().available() > 0) {
-                            System.out.println(userPerfil.getFotoPerfil().available());
                     %>
                     <img class="img-profile" src="${pageContext.request.contextPath}/renderAvatar?id=<%=userPerfil.getId()%>"
                          alt="img_profile">
@@ -172,7 +170,6 @@
             </form>
             <%
                 if(session.getAttribute("editada") != null) {
-                    System.out.println("Valor de editado es: "+ session.getAttribute("editada"));
                     if (session.getAttribute("editada").equals("true")) {
             %>
             <span class="save-success">Datos guardados correctamente</span>

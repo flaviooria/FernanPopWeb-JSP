@@ -13,26 +13,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Usuario user = (Usuario) session.getAttribute("user");
-    ArrayList<Mensaje> mensajesEnviados = new ArrayList<>();
-    ArrayList<Mensaje> mensajesRecibidos = new ArrayList<>();
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");
     } else {
-        Gestion gestion = null;
-        try {
-            gestion = new Gestion();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (gestion != null) {
-            mensajesEnviados = Gestion.mensajesEnviados(user.getId());
-            mensajesRecibidos = Gestion.mensajesRecibidos(user.getId());
-        } else {
-            session.setAttribute("error", "No se pudo conectar a la base de datos.");
-            response.sendRedirect("./error.jsp");
-        }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,24 +119,25 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
-    let contenListMessages = document.querySelector(".content")
 
+    window.addEventListener("load",() => getListOfMessages('recibido'))
+
+    let contenListMessages = document.querySelector(".content")
+    //función que retorna la página con la lista de mensajes
     function getListOfMessages(accion) {
         chat.innerHTML = ""
         fetch("${pageContext.request.contextPath}/pages/listOfMessage.jsp?accion="+accion)
         .then(response => response.text())
         .then(data => {
-            console.log(data)
             contenListMessages.innerHTML = data
         })
     }
-
+    //función que retorna el contenido del mensaje.
     function getContentMessage(id, accion) {
         contenListMessages.innerHTML = ""
         fetch("${pageContext.request.contextPath}/pages/chat.jsp?idChat="+id+"&accion="+accion)
         .then(response => response.text())
         .then(data => {
-            console.log(data)
             chat.innerHTML = data
         })
     }

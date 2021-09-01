@@ -11,7 +11,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Usuario user = (Usuario) session.getAttribute("user");
-    System.out.println("pagina de inicio el user es = " + user);
     if (user == null) {
         session.setAttribute("error", "Usuario no identificado.");
         response.sendRedirect("./error.jsp");
@@ -130,7 +129,6 @@
         <div class="products">
             <%
                 for (Producto p : listProducts) {
-                    System.out.println("Entro a productos por termino");
             %>
             <div class="card">
                 <img class="card-image" loading="lazy"
@@ -149,7 +147,6 @@
             <%
                 if (listProducts.isEmpty()) {
                     for (Producto p : allProducts) {
-                        System.out.println("Entro a todos los productos");
             %>
             <div class="card">
                 <img class="card-image" loading="lazy"
