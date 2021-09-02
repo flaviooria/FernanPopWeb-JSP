@@ -84,21 +84,6 @@ create table valoracionesPendientes(
     constraint pk_valoracionesPendientes primary key (id)
 );
 
-drop table if exists mensajes;
-create table mensajes(
-    id int auto_increment,
-    contenido varchar(300) not null ,
-    fechaEnvio timestamp default current_timestamp,
-    emisor int not null,
-    receptor int not null,
-    asunto varchar(300) not null, 
-    estaLeido boolean default false,
-    fechaLectura timestamp,
-    constraint primary key (id),
-    constraint foreign key (emisor) references usuarios(id) on delete cascade,
-    constraint foreign key (receptor) references usuarios(id) on delete cascade
-);
-
 drop table if exists mensajesRecibidos;
 create table mensajesRecibidos(
     id int auto_increment,

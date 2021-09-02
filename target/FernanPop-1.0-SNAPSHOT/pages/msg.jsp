@@ -141,6 +141,25 @@
             chat.innerHTML = data
         })
     }
+
+    async function deleteMessage(id,nameTable) {
+        let chatText = document.querySelector(".message-content")
+        var responseStatus;
+        await fetch("${pageContext.request.contextPath}/eliminarMensaje?idChat="+id+"&nameTable="+nameTable, {
+            method: "POST"
+        })
+        .then(response => {
+            response.text()
+            responseStatus  = response.status
+        })
+        .then(data => {
+            if (responseStatus === 200) {
+                chatText.textContent = data
+            } else {
+                chatText.textContent = "No se pudo eliminar el mensaje, vuelve a intentarlo."
+            }
+        })
+    }
 </script>
 <script src="../js/chat.js"></script>
 </body>

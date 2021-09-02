@@ -10,6 +10,7 @@
 <%
     int idChat = Integer.parseInt(request.getParameter("idChat"));
     String accion = request.getParameter("accion");
+    String nombreTabla = accion.equals("enviado") ? "mensajesEnviados" : "mensajesRecibidos";
     Mensaje msg = null;
     Gestion gestion = null;
     String fecha = " ";
@@ -19,7 +20,9 @@
         e.printStackTrace();
     }
     if (gestion != null) {
-        msg = Gestion.obtenerMensje(idChat);
+        msg = ((accion.equals("enviado")
+                ? Gestion.obtenerMensajeEnviado(idChat)
+                : Gestion.obtenerMensajeRecibido(idChat)));
         fecha = ((accion.equals("enviado") ? msg.getFechaLectura() : msg.getFechaEnvio()));
     } else {
         session.setAttribute("error", "No se pudo conectar a la base de datos.");
@@ -40,11 +43,11 @@
             <%
             } else {
                 //Si el mensaje no esta como leido lo setea a leido
-                Gestion.setearMensajeComoLeido(msg.getId());
+                Gestion.setearMensajeComoLeido(msg.getId(),nombreTabla);
             %>
             <img src="../assets/icons/double-check-gray.svg" alt="check">
             <%}%>
-            <a href="" class="btn-delete" title="eliminar"><i class="fas fa-trash-alt"></i></a>
+            <a onclick="deleteMessage(<%=msg.getId()%>,'<%=nombreTabla%>')" class="btn-delete" title="eliminar"><i class="fas fa-trash-alt"></i></a>
         </span>
     </div>
 </div>

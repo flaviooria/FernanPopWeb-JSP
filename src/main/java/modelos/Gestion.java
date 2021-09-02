@@ -296,5 +296,9 @@ public class Gestion {
     public static void setearMensajeComoLeido(int idChat,String nombreTabla) {
         daoGestionSQL.setearLecturaMensaje(idChat, nombreTabla , dao);
     }
+
+    public static boolean eliminarMensaje(int idChat,String nombreTabla) {
+        return daoGestionSQL.eliminarMensaje(idChat,nombreTabla,dao);
+    }
 }
 

@@ -17,4 +17,5 @@ public interface DaoChat {
                                                DAOManager dao);
     public boolean almacenarEnvioBuzonRecibidos(String contenido, String asunto, int idEmisor, int idReceptor,
                                                 DAOManager dao);
+    public boolean eliminarMensaje(int idMensaje,String nombreTabla,DAOManager dao);
 }
