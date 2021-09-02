@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/chat.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/editarPerfil.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/nuevoMensaje.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/registro.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/ventaProducto.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
       </map>

@@ -752,8 +752,8 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
-    public boolean envioMensajePrivado(String contenido,String asunto, int idEmisor, int idReceptor, DAOManager dao) {
-        String sql = "insert into mensajes (contenido,emisor,receptor,asunto) values (?,?,?,?)";
+    public boolean almacenarEnvioBuzonEnviados(String contenido, String asunto, int idEmisor, int idReceptor, DAOManager dao) {
+        String sql = "insert into mensajesEnviados (contenido,emisor,receptor,asunto) values (?,?,?,?)";
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);
             stmt.setString(1, contenido);
@@ -769,9 +769,26 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
-    public ArrayList<Mensaje> mensajesPrivadosOfUser(int idUser, DAOManager dao) {
+    public boolean almacenarEnvioBuzonRecibidos(String contenido, String asunto, int idEmisor, int idReceptor, DAOManager dao) {
+        String sql = "insert into mensajesRecibidos (contenido,emisor,receptor,asunto) values (?,?,?,?)";
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setString(1, contenido);
+            stmt.setInt(2, idEmisor);
+            stmt.setInt(3, idReceptor);
+            stmt.setString(4,asunto);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public ArrayList<Mensaje> mensajesEnviadosOfUser(int idUser, DAOManager dao) {
         String sql = "select *, DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE, " +
-                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajes where emisor = ?";
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajesEnviados where emisor = ?";
         ArrayList<Mensaje> mensajes = new ArrayList<>();
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);
@@ -799,7 +816,35 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     @Override
     public ArrayList<Mensaje> mensajesRecibidosOfUser(int idUser, DAOManager dao) {
         String sql = "select *, DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE, " +
-                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajes where receptor = ?" +
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajesRecibidos where receptor = ?";
+        ArrayList<Mensaje> mensajes = new ArrayList<>();
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setInt(1, idUser);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Mensaje mensaje = new Mensaje();
+                mensaje.setId(rs.getInt("id"));
+                mensaje.setContenido(rs.getString("contenido"));
+                mensaje.setEmisor(obtenerUserById(rs.getInt("emisor"), dao));
+                mensaje.setReceptor(obtenerUserById(rs.getInt("receptor"), dao));
+                mensaje.setFechaEnvio(rs.getString("fechaE"));
+                mensaje.setFechaLectura(rs.getString("fechaL"));
+                mensaje.setEstaLeido(rs.getBoolean("estaLeido"));
+                mensaje.setAsunto(rs.getString("asunto"));
+                mensajes.add(mensaje);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return mensajes;
+    }
+
+    @Override
+    public ArrayList<Mensaje> mensajesRecibidosOfUserSinLeer(int idUser, DAOManager dao) {
+        String sql = "select *, DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE, " +
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajesRecibidos where receptor = ?" +
                 " and estaLeido = 0";
         ArrayList<Mensaje> mensajes = new ArrayList<>();
         try {
@@ -826,8 +871,8 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
-    public void setearLecturaMensaje(int idMensaje, DAOManager dao) {
-        String sql = "update mensajes set estaLeido = ?,fechaLectura = ? where id = ?";
+    public void setearLecturaMensaje(int idMensaje, String nombreTabla, DAOManager dao) {
+        String sql = "update "+ nombreTabla +" set estaLeido = ?,fechaLectura = ? where id = ?";
         String fecha = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(Calendar.getInstance().getTime());
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);
@@ -841,9 +886,9 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     }
 
     @Override
-    public Mensaje obtenerMensaje(int idMensaje, DAOManager dao) {
+    public Mensaje obtenerMensajeDeBuzonEnviados(int idMensaje, DAOManager dao) {
         String sql = "select *,DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE," +
-                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajes where id = ?";
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajesEnviados where id = ?";
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);
             stmt.setInt(1,idMensaje);
@@ -851,6 +896,24 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
             if (rs.next()) {
                 return new Mensaje(rs.getInt("id"),rs.getString("contenido"),rs.getBoolean("estaLeido")
                 ,rs.getString("fechaE"),rs.getString("fechaL"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Mensaje obtenerMensajeDeBuzonRecibidos(int idMensaje, DAOManager dao) {
+        String sql = "select *,DATE_FORMAT(fechaEnvio, \"%e/%m/%Y\") as fechaE," +
+                "DATE_FORMAT(fechaLectura, \"%e/%m/%Y\") as fechaL from mensajesRecibidos where id = ?";
+        try {
+            PreparedStatement stmt = dao.getConn().prepareStatement(sql);
+            stmt.setInt(1,idMensaje);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Mensaje(rs.getInt("id"),rs.getString("contenido"),rs.getBoolean("estaLeido")
+                        ,rs.getString("fechaE"),rs.getString("fechaL"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

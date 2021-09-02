@@ -28,7 +28,7 @@
             listProducts = Gestion.obtenerProductosByUser(user.getId());
             solicitudes = Gestion.mostrarSolicitudesByUsuario(user);
             valoracionesPendientes = Gestion.getValoracionPendiente(user);
-            mensajes = Gestion.mensajesRecibidos(user.getId());
+            mensajes = Gestion.mensajesRecibidosSinLeer(user.getId());
         } else {
             session.setAttribute("error", "No se pudo conectar a la base de datos.");
             response.sendRedirect("./error.jsp");

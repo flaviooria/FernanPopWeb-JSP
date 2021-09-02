@@ -265,27 +265,36 @@ public class Gestion {
     }
 
     public static boolean enviarMensaje(String msg, String asunto, int idEmisor, int idReceptor) {
-        return daoGestionSQL.envioMensajePrivado(msg, asunto, idEmisor, idReceptor, dao);
+        return daoGestionSQL.almacenarEnvioBuzonEnviados(msg, asunto, idEmisor, idReceptor, dao) &&
+        daoGestionSQL.almacenarEnvioBuzonRecibidos(msg, asunto, idEmisor, idReceptor, dao);
     }
 
     public static ArrayList<Mensaje> mensajesRecibidos(int idUsuario) {
         return daoGestionSQL.mensajesRecibidosOfUser(idUsuario, dao);
     }
 
-    public static ArrayList<Mensaje> mensajesEnviados(int idUsuario) {
-        return daoGestionSQL.mensajesPrivadosOfUser(idUsuario, dao);
+    public static ArrayList<Mensaje> mensajesRecibidosSinLeer(int idUsuario) {
+        return daoGestionSQL.mensajesRecibidosOfUserSinLeer(idUsuario, dao);
     }
 
-    public static Mensaje obtenerMensje(int idMensaje) {
-        return daoGestionSQL.obtenerMensaje(idMensaje, dao);
+    public static ArrayList<Mensaje> mensajesEnviados(int idUsuario) {
+        return daoGestionSQL.mensajesEnviadosOfUser(idUsuario, dao);
+    }
+
+    public static Mensaje obtenerMensajeEnviado(int idMensaje) {
+        return daoGestionSQL.obtenerMensajeDeBuzonEnviados(idMensaje, dao);
+    }
+
+    public static Mensaje obtenerMensajeRecibido(int idMensaje) {
+        return daoGestionSQL.obtenerMensajeDeBuzonRecibidos(idMensaje, dao);
     }
 
     public static ArrayList<Producto> allProductos() {
         return daoGestionSQL.obtenerAllProductos(dao);
     }
 
-    public static void setearMensajeComoLeido(int idChat) {
-        daoGestionSQL.setearLecturaMensaje(idChat, dao);
+    public static void setearMensajeComoLeido(int idChat,String nombreTabla) {
+        daoGestionSQL.setearLecturaMensaje(idChat, nombreTabla , dao);
     }
 }
 
