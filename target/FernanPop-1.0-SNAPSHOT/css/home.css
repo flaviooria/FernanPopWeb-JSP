@@ -379,6 +379,7 @@ header {
     grid-column: 1 / -1;
     grid-row: 3 / -1;
     place-items: center;
+    position: relative;
 }
 
 #nameProduct {
@@ -394,7 +395,7 @@ header {
 #nameProduct::placeholder {
     color: #293241;
     font-family: var(--fuente-titulos);
-    margin: 0px 10px;
+    margin: 0 10px;
 }
 
 .btn-search {
@@ -415,6 +416,31 @@ header {
 .btn-search:hover {
     background-color: #3D5A80;
     cursor: pointer;
+}
+
+strong {
+    color: rgba(130, 130, 179, 0.52);
+}
+
+.lista-autocompletar-items {
+    color: #ccc;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, .3);
+    width: 80%;
+}
+
+.lista-autocompletar-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    color: var(--blue-metalic);
+}
+
+.lista-autocompletar-items div:hover {
+    color: var(--orange);
 }
 
 /* Alert Products */
