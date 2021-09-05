@@ -158,12 +158,14 @@
                         </div>
                         <div class="notification_box">
                             <% if (!mensajes.isEmpty()) {%>
-                            <% for (Mensaje m:mensajes) {
+                            <% for (Mensaje m : mensajes) {
                             %>
                             <form action="./msg.jsp" class="form-notification num-msg">
                                 <p class="subject">Coversación pendiente</p>
-                                <p class="product">Asunto: <%=m.getAsunto()%></p>
-                                <p class="user">Enviado: <%=getNombreCompleto(m.getEmisor())%></p>
+                                <p class="product">Asunto: <%=m.getAsunto()%>
+                                </p>
+                                <p class="user">Enviado: <%=getNombreCompleto(m.getEmisor())%>
+                                </p>
                                 <button type="submit" class="send-valorate">Ver</button>
                             </form>
                             <%}%>
@@ -173,7 +175,7 @@
                 </div>
             </div>
             <!-- Nav search -->
-            <form action="${pageContext.request.contextPath}/mostrarProductos" class="form-search" method="post">
+            <form action="${pageContext.request.contextPath}/mostrarProductos" class="form-search" method="post" autocomplete="off">
                 <div class="header-search">
                     <input type="text" name="nameProduct" id="nameProduct" placeholder="Busca todo lo que quieras">
                     <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
@@ -259,82 +261,111 @@
     })
 
     //Funcionalidad para autocompletado de busqueda
-    class AutoComplete {
-        constructor(selector, urlBase) {
-            this.search = this.search.bind(this);
-            this.input = document.querySelector(selector);
-            this.urlBase = urlBase;
-            this.value = "";
-            this.interval = null;
-            this.buildDataList();
-            this.bindEvents();
-        }
+    autocompletar();
 
-        bindEvents() {
-            //genera las busquedas personalizadas por termino
-            this.input.addEventListener("keyup", () => {
-                if (this.input.value === this.value || this.input.value.length < 3) return; //Si el strign es vacio no busca y si es el mismo valor tampoco!
+    function autocompletar() {
+        const inputSearch = document.querySelector('#nameProduct');
+        let indexFocus = -1;
 
-                //Aqui si ya hay un intervalo de tiempo en proceso la finaliza.
-                if (this.interval) window.clearInterval(this.interval);
+        inputSearch.addEventListener('input', function () {
+            const term = this.value;
 
-                this.value = this.input.value;
+            if (!term) return false;
+            cerrarLista();
 
-                //Aquí le damos cierto tiempo para realizar recien la peticion!!!
-                this.interval = window.setTimeout(this.search, 500);
+            //crear la lista de sugerencias
+            const divList = document.createElement('div');
+            divList.setAttribute('id', this.id + '-lista-autocompletar');
+            divList.setAttribute('class', 'lista-autocompletar-items');
+            this.parentNode.appendChild(divList);
+
+            // conexión a BD
+            httpRequest('${pageContext.request.contextPath}/ajaxBuscador?nameProduct=' + term, function () {
+
+                const arreglo = JSON.parse(this.responseText);
+
+                //validar arreglo vs input
+                if (arreglo.length === 0) return false;
+                arreglo.forEach(item => {
+                    console.log(item)
+                    const elementoLista = document.createElement('div');
+                    elementoLista.innerHTML = item.nombre;
+                    elementoLista.addEventListener('click', function () {
+                        inputSearch.value = this.innerText;
+                        cerrarLista();
+                        return false;
+                    });
+                    divList.appendChild(elementoLista);
+
+                });
             })
-        }
+        });
 
-        buildDataList() {
-            this.dataList = document.createElement("datalist");
-            this.dataList.id = "datalist-autocomplete";
-            document.querySelector(".header-search").appendChild(this.dataList);
-            this.input.setAttribute("list", this.dataList.id);
-        }
+        inputSearch.addEventListener('keydown', function (e) {
+            const divList = document.querySelector('#' + this.id + '-lista-autocompletar');
+            let items;
 
-        search() {
-            Search.get(this.urlBase + this.value)
-                .then(data => {
-                    this.build(data);
-                }) //Llamamos el metodo build para que construya nuestra data con los titulos
-        }
+            if (divList) {
+                items = divList.querySelectorAll('div');
 
-        build(response) {
-            //Construimos los datos con la respuesta de la api
-            this.dataList.innerHTML = "";
-            response.forEach(elem => {
-                const {nombre} = elem
-                let optionElem = document.createElement("option");
-                optionElem.value = nombre;
-                optionElem.innerHTML = nombre;
-                this.dataList.appendChild(optionElem);
-            });
-        }
-    }
+                switch (e.keyCode) {
+                    case 40: //tecla de abajo
+                        indexFocus++;
+                        if (indexFocus > items.length - 1) indexFocus = items.length - 1;
+                        break;
 
-    class Search {
-        //REalizando la peticion a la api!!!
-        static get(urlApi) {
-            let xhr = new XMLHttpRequest();
-            xhr.open("GET", urlApi);
-            xhr.send();
-            return new Promise((resolve, reject) => {
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        //Conecto, devuelve un json de la api
-                        if (xhr.status === 200) return resolve(JSON.parse(xhr.responseText));
-                        //No conecto
-                        reject(xhr.status);
-                    }
+                    case 38: //tecla de arriba
+                        indexFocus--;
+                        if (indexFocus < 0) indexFocus = 0;
+                        break;
+
+                    case 13: // presionas enter
+                        e.preventDefault();
+                        items[indexFocus].click();
+                        indexFocus = -1;
+                        break;
+
+                    default:
+                        break;
                 }
-            });
-        }
+
+                seleccionar(items, indexFocus);
+                return false;
+            }
+        });
+
+        document.addEventListener('click', function () {
+            cerrarLista();
+        });
     }
 
-    (function () {
-        const api = "${pageContext.request.contextPath}/ajaxBuscador?nameProduct=";
-        let autocomplete = new AutoComplete("#nameProduct", api);
-    }())
+    function seleccionar(items, indexFocus) {
+        if (!items || indexFocus === -1) return false;
+        items.forEach(x => {
+            x.classList.remove('autocompletar-active')
+        });
+        items[indexFocus].classList.add('autocompletar-active');
+    }
+
+    function cerrarLista() {
+        const items = document.querySelectorAll('.lista-autocompletar-items');
+        items.forEach(item => {
+            item.parentNode.removeChild(item);
+        });
+        indexFocus = -1;
+    }
+
+    function httpRequest(url, callback) {
+        const http = new XMLHttpRequest();
+        http.open('GET', url);
+        http.send();
+
+        http.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                callback.apply(http);
+            }
+        }
+    }
 </script>
 <% }%>
 </body>
