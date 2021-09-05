@@ -228,7 +228,6 @@
                 //validar arreglo vs input
                 if (arreglo.length === 0) return false;
                 arreglo.forEach(item => {
-                    console.log(item)
                     const elementoLista = document.createElement('div');
                     elementoLista.innerHTML = item.nombre;
                     elementoLista.addEventListener('click', function () {

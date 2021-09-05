@@ -267,10 +267,10 @@
         const inputSearch = document.querySelector('#nameProduct');
         let indexFocus = -1;
 
-        inputSearch.addEventListener('input', function () {
+        inputSearch.addEventListener('keyup', function () {
             const term = this.value;
 
-            if (!term) return false;
+            if (!term || term.length < 3 || term === "" ) return;
             cerrarLista();
 
             //crear la lista de sugerencias
@@ -287,7 +287,6 @@
                 //validar arreglo vs input
                 if (arreglo.length === 0) return false;
                 arreglo.forEach(item => {
-                    console.log(item)
                     const elementoLista = document.createElement('div');
                     elementoLista.innerHTML = item.nombre;
                     elementoLista.addEventListener('click', function () {

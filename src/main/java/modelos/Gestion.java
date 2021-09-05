@@ -100,7 +100,7 @@ public class Gestion {
     }
 
     public static ArrayList<Producto> obtenerProductosByTerm(String term) {
-        return daoGestionSQL.obtenerProductoByTerm(term, dao);
+        return daoGestionSQL.obtenerProductoByTerm(term.trim(), dao);
     }
 
     public static Producto obtenerProductoById(int id) {

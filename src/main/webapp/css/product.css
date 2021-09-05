@@ -166,7 +166,6 @@ header {
     margin-top: 10px;
     text-align: center;
     padding: 8px;
-    border-radius: 5px;
     border-radius: 5px 0 5px 0;
     background-color: rgb(114, 173, 250, 0.3);
     font-family: var(--fuente-titulos);
@@ -233,7 +232,6 @@ header {
     position: absolute;
     left: 0;
     top: 10px;
-    color: var(--blue-metalic);
     z-index: 2;
     transition: transform 150ms ease-out, font-size 150ms ease-out;
     margin-left: 10px;
