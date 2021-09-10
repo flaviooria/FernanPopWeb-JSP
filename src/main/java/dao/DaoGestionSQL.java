@@ -924,12 +924,12 @@ public class DaoGestionSQL implements DaoGestion, DaoUsuario, DaoProducto, DaoCh
     @Override
     public ArrayList<Usuario> usersPosiblesCompradores(int idReceptor,DAOManager dao) {
         ArrayList<Usuario> users = new ArrayList<>();
-        String sql = "select receptor from mensajesRecibidos";
+        String sql = "select emisor from mensajesRecibidos";
         try {
             PreparedStatement stmt = dao.getConn().prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                users.add(obtenerUserById(rs.getInt("receptor"),dao));
+                users.add(obtenerUserById(rs.getInt("emisor"),dao));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -6,7 +6,7 @@ create table usuarios(
     id int auto_increment,
     nombre varchar(250) not null,
     apellido varchar(250) default "",
-    correo varchar(250) not null,
+    correo varchar(250) not null unique,
     contrasenia varchar(250) not null,
     contraseniaCifrada text not null,
     tokenUsuario varchar(250) default "1357",
@@ -160,9 +160,3 @@ delimiter ;
 
 insert into usuarios (nombre,apellido,correo,contrasenia) values ("flavio","oria","flavio@dev.com","fc120899");
 insert into usuarios (nombre,apellido,correo,contrasenia) values ("carlos","barroso","carlos@dev.com","fc120899");
-insert into productos (nombre,descrip,precio,idUsuario) values ("MacBook Pro 13","Portatil en buen estado",550,1);
-insert into productos (nombre,descrip,precio,idUsuario) values ("Mouse Gaming","Marca marz",55.50,1);
-insert into productos (nombre,descrip,precio,idUsuario) values ("Monitor LCD LG","monitor hdmi x 3 22pulgadas.",230,1);
-insert into productos (nombre,descrip,precio,idUsuario) values ("Xiaomi Redmin Note 9 Pro","Buen modelo y economico.",340,2);
-insert into productos (nombre,descrip,precio,idUsuario) values ("Pizarra Acrilica","Hecho en españa, pura calidad",50,2);
-

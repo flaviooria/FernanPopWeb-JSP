@@ -72,7 +72,7 @@
   </header>
   <!-- Hero -->
   <div class="hero">
-    <form action="${pageContext.request.contextPath}/authToken" class="hero__form" method="post">
+    <form action="${pageContext.request.contextPath}/authToken" class="hero__form" method="post" autocomplete="off">
       <label class="hero__form-label" for="token">Ingresa tu token:</label>
       <div class="form__token">
         <input class="form__token-textToken" type="text" maxlength="4" name="token" id="token" required>

@@ -300,50 +300,9 @@
             })
         });
 
-        inputSearch.addEventListener('keydown', function (e) {
-            const divList = document.querySelector('#' + this.id + '-lista-autocompletar');
-            let items;
-
-            if (divList) {
-                items = divList.querySelectorAll('div');
-
-                switch (e.keyCode) {
-                    case 40: //tecla de abajo
-                        indexFocus++;
-                        if (indexFocus > items.length - 1) indexFocus = items.length - 1;
-                        break;
-
-                    case 38: //tecla de arriba
-                        indexFocus--;
-                        if (indexFocus < 0) indexFocus = 0;
-                        break;
-
-                    case 13: // presionas enter
-                        e.preventDefault();
-                        items[indexFocus].click();
-                        indexFocus = -1;
-                        break;
-
-                    default:
-                        break;
-                }
-
-                seleccionar(items, indexFocus);
-                return false;
-            }
-        });
-
         document.addEventListener('click', function () {
             cerrarLista();
         });
-    }
-
-    function seleccionar(items, indexFocus) {
-        if (!items || indexFocus === -1) return false;
-        items.forEach(x => {
-            x.classList.remove('autocompletar-active')
-        });
-        items[indexFocus].classList.add('autocompletar-active');
     }
 
     function cerrarLista() {

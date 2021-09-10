@@ -262,11 +262,11 @@ body {
     outline: none;
     background: transparent;
     border: 1px solid rgba(41, 50, 65,0.5);
-    padding: .85em;
     font-family: var(--fuente-texto);
     font-weight: var(--placeholder-weight);
     box-shadow: 0 5px 15px 0 rgba(31, 38, 135, 0.20);
     margin-top: -1em;
+    padding: 1.2em;
 }
 
 .password {
@@ -300,6 +300,7 @@ body {
     justify-content: center;
     font-size: 1em;
     color: var(--color-texto);
+    cursor: pointer;
 }
 
 .form-register .send .fa-chevron-right  {
@@ -818,7 +819,7 @@ textarea {
         outline: none;
         background: transparent;
         border: 1px solid rgba(41, 50, 65);
-        padding: .5em;
+        padding: 1.2em;
         font-family: var(--fuente-texto);
         font-weight: var(--placeholder-weight);
     }

@@ -40,7 +40,7 @@
 <form  class="form">
   <p class="user"><%=accionUser + allNombre%></p>
   <p class="subject">Asunto: <%=m.getAsunto()%></p>
-  <button type="button" onclick="getContentMessage(<%=m.getId()%>, <%="'"+accion+"'"%>)">Chat</button>
+  <button type="button" onclick="getContentMessage(<%=m.getId()%>, <%="'"+accion+"'"%>)">Ver chat</button>
 </form>
 <% }%>
 <% } else {%>
