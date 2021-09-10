@@ -62,6 +62,58 @@ A continuación les sugerimos ingresar al link o enlace de descarga del servido 
 
 ------
 
+## Notas para el desarrollador
+
+- Antes de que arranques la página quisiera ayudarte con librerías que puedas necesitar o ficheros que necesites editar para poder ejecutar y compilar el programa correctamente.
+
+  - Tienes dentro del repositorio un directorio llamado Database, ahí encontraras el fichero fernapop.sql el cual puedes utilizar para poder manejar la base de datos del programa.
+
+- Utilizo [Docker](https://hub.docker.com/)  para alojar la base de datos, y también para administrar nuestra base de datos utilizaremos phpmyadmin.  A continuación te mostrare los pases que debes de tomar.
+
+  1. Instalar [Docker](https://www.docker.com/products/docker-desktop "Enlace para descargar docker" ).
+
+  2. Descargar los contenedores de [mysql](https://hub.docker.com/_/mysql) y [phpmyadmin](https://hub.docker.com/_/phpmyadmin). 
+
+     ### ¿Cómo se hace?
+
+     
+
+     - Descargaremos el contenedor y arrancaremos la imagen de mysql. Para mas información ir al enlace siguiente de  [mysql](https://hub.docker.com/_/mysql) . Copia y pega los siguientes lineas en tu cli.
+
+     ```bash
+     $ docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 --character-set-server=utf8mb4 mysql 
+     ```
+
+     -  Descargaremos phpmyadmin, y lo enlazaremos a nuestra base de datos de esta forma podremos administrarla. Copia y pega los siguientes lineas en tu cli.
+
+       ```bash
+       $ docker run --name phpmyadmin -d --link mysql:db -p 8081:80 phpmyadmin
+       ```
+
+  3. Añadir nuestra base de datos fernapop.sql al contenedor de mysql y para poder administrarla con phpmyadmin solo bastaría con ingresar a [web - phpmyadmin](http://localhost:8081/).
+
+     ```bash
+     $ docker exec -it mysql -u root -p
+     $ password: root
+     -- copia el contenido del fichero fernanpop.sql y pegalo.
+     ```
+
+- Ya montado nuestra base de datos, por si haz realizado algún cambio ya sea cambiar de nombre el fichero de la base de datos, o tener otra contraseña, o así mismo tener ya tu propia base de dato mysql montada en xamp o en el sistema, tendrías que modificar los ficheros Properties que se encuentran en la ruta de [src](https://github.com/flaviooria/FernanPopWeb/tree/master/src)/[main](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main)/[resources](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources)/[config](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources/config)/[database.properties](https://github.com/flaviooria/FernanPopWeb/blob/master/src/main/resources/config/database.properties) . 
+
+  - ```properties
+    url=jdbc:mysql://localhost/nombre-base-datos (por defecto = fernanpop.sql)
+    user=tu_nombre (por defecto = root)
+    pass=tu_contrasña (por defecto = root)
+    ```
+
+  **Nota** : en este fichero podrás modificar la configuración de acceso a la base de datos que usara la aplicación web.
+
+- Este programa funciona con envío de emails, que esta configurado en un archivo properties, sin embargo tendrás que añadir tu propia configuración de emails, ya que por seguridad no la he añadido en el repositorio. Se encuentra en el mismo directorio de [config](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources/config).
+
+- Contaras con una carpeta libraries, la cual contienes todas las librerías usadas en el programa.
+
+- Además de tener el apache-tomcat de directorio por si deseas saltarte la opción de descargatelo.
+
 #### **Sobre FernanPop**
 
 - Esta aplicación  consiste en la venta y compra de productos. La cual permite el registro todas las personas que deseen con su correo electrónico. Cada usuario podrá crear productos e ir gestionandolos. Como usuario puedes ver tus datos y editarlos, ver tus artículos en venta y los que están en la aplicación. Ver tu historial de venta y de compras, realizar la venta de tu producto o quitarlo si no te gusta. Por último al realizar cada compra podrá tener una valoración tanto al vendedor como al comprador.
