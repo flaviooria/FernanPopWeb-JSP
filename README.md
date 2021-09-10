@@ -122,7 +122,7 @@ Luego pegaremos nuestro token y nos validamos accediendo a la página de inicio.
 
 
 
-## Subida de un producto 
+## Subida de un producto 
 
 + Vamos aprender de forma muy rápida y sencilla a crear un nuevo producto y ponerlo en venta.
 
@@ -164,9 +164,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
 
 
-- ### **_Solicitando un producto_ ** 
-
-  
+### **_Solicitando un producto_ ** 
 
   - Deberas de escoger el producto y es muy fácil como darle a ver producto, después tan solo es pinchar en solicitar y listo.
 
@@ -174,7 +172,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
 
 
-- ### Chat sobre el producto
+### Chat sobre el producto
 
   
 
