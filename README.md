@@ -58,7 +58,7 @@ A continuación les sugerimos ingresar al link o enlace de descarga del servido 
 
 -  Tanto en usuarios de sistemas operativos Windows o Mac pueden optar por la versión de Source Code y descargando en formato zip, la cual luego tendrían que descomprimir. 
 
-![tomcat-file-download](/Users/flaviooria/Desktop/tomcat.png)
+![tomcat-file-download](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2Ftomcat.png?alt=media&token=0e4b5a4e-4cca-44da-8b22-facd1080706a)
 
 ------
 
@@ -80,13 +80,13 @@ _**Nota:** Para realizar las operaciones sobre  un producto en la página, los u
 
 Vista móvil de la página[^1]
 
-![localhost-iPhone-XS-X-375x812](/Users/flaviooria/Downloads/localhost-iPhone-XS-X-375x812.png)
+![localhost-iPhone-XS-X-375x812](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F1.png?alt=media&token=7232b1e7-b4fd-4f0b-9883-f801754b28e2)
 
 
 
 - Vista de Escritorio[^1]
 
-![localhost-Medium-Screen-1024x800](/Users/flaviooria/Downloads/localhost-Medium-Screen-1024x800.png)
+![localhost-Medium-Screen-1024x800](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F2.png?alt=media&token=b7f6f3ec-804c-411a-a968-92aa0ad53251)
 
 
 
@@ -96,7 +96,7 @@ Vista móvil de la página[^1]
 
 - Registrándonos, revisen que sus datos sean correctos. Le das click a registrarse la cual te llevará a la pagina anterior vista. [^1] 
 
-![Captura de pantalla 2021-09-08 a las 19.43.05](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-08 a las 19.43.05.png)
+![Captura de pantalla 2021-09-08 a las 19.43.05](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F3.png?alt=media&token=ed06a378-78f7-4e91-be7e-59d00e65111f)
 
 
 
@@ -104,13 +104,13 @@ Vista móvil de la página[^1]
 
 Al iniciar sesión, nos encontraremos con un token, que nos servirá para validar nuestro datos, daremos click en icono de pegar y le damos a continuar.
 
- ![Captura de pantalla 2021-09-08 a las 19.53.44](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-08 a las 19.53.44.png)
+ ![Captura de pantalla 2021-09-08 a las 19.53.44](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F5.png?alt=media&token=f600c28d-03c5-407b-860b-d18931c86dfc)
 
 
 
 Luego pegaremos nuestro token y nos validamos accediendo a la página de inicio.
 
-![Captura de pantalla 2021-09-08 a las 19.57.23](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-08 a las 19.57.23.png)
+![Captura de pantalla 2021-09-08 a las 19.57.23](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F6.png?alt=media&token=7c09ea14-7981-41c3-ac46-8e0a37263519)
 
 
 
@@ -118,7 +118,7 @@ Luego pegaremos nuestro token y nos validamos accediendo a la página de inicio.
 
 - Desde este punto tendremos una cierta variedad de opciones que podremos realizar y procesar, tales como, subir un producto, ver productos , solicitar y buscar productos y enviar mensajes con otros usuarios.
 
-  ![localhost-Medium-Screen-1024x800 (1)](/Users/flaviooria/Downloads/localhost-Medium-Screen-1024x800 (1).png)
+  ![localhost-Medium-Screen-1024x800 (1)](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F7.png?alt=media&token=161e11ef-c1f4-42f4-8263-71ea2cc94c41)
 
 
 
@@ -132,7 +132,7 @@ Luego pegaremos nuestro token y nos validamos accediendo a la página de inicio.
 
   
 
-![Nuevo proyecto](/Users/flaviooria/Downloads/Nuevo proyecto.png)
+![Nuevo proyecto](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F8.png?alt=media&token=c3f1a011-2bf1-4183-badf-5a7157e59813)
 
 
 
@@ -140,7 +140,7 @@ Luego pegaremos nuestro token y nos validamos accediendo a la página de inicio.
 
   
 
-![Captura de pantalla 2021-09-08 a las 23.45.03](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-08 a las 23.45.03.png)
+![Captura de pantalla 2021-09-08 a las 23.45.03](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F9.png?alt=media&token=865d1502-53f5-4203-a192-d3a88715d10a)
 
 
 
@@ -152,7 +152,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
   
 
-  ![Captura de pantalla 2021-09-09 a las 0.00.00](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 0.00.00.png)
+  <img src="https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F10.png?alt=media&token=59c6432e-2c18-4789-b0b4-fd2a73a05446" alt="Captura de pantalla 2021-09-09 a las 0.00.00" style="width:100%;border:solid skyblue 2px;border-radius:8px"/>
 
 
 
@@ -160,7 +160,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
 - Veras en la siguiente imagen como se muestran los productos, además puedes realizar búsquedas acuerdo al producto que te interese, y poder realizar una solicitud de compra o comunicarte con el cliente respecto al producto.
 
-![Captura de pantalla 2021-09-09 a las 17.15.24](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.15.24.png)
+![Captura de pantalla 2021-09-09 a las 17.15.24](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F11.png?alt=media&token=971f2dc3-8a38-4e7c-af4e-4a4ed618a071)
 
 
 
@@ -170,7 +170,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
   - Deberas de escoger el producto y es muy fácil como darle a ver producto, después tan solo es pinchar en solicitar y listo.
 
-    ![Nuevo proyecto (1)](/Users/flaviooria/Downloads/Nuevo proyecto (1).png)
+    ![Nuevo proyecto (1)](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F12.png?alt=media&token=cda22a5a-e0ef-432f-8ee2-915d10c4324a)
 
 
 
@@ -184,11 +184,11 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
     
 
-    ![Captura de pantalla 2021-09-09 a las 17.37.26](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.37.26.png)
+    ![Captura de pantalla 2021-09-09 a las 17.37.26](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F13.png?alt=media&token=b3726449-7619-4190-9947-b964e4231b76)
 
 
 
-![Captura de pantalla 2021-09-09 a las 17.37.35](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.37.35.png)
+![Captura de pantalla 2021-09-09 a las 17.37.35](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F14.png?alt=media&token=c030ce2b-c237-4b40-a4e8-a7c3a16e9bd0)
 
 
 
@@ -198,11 +198,11 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
 
 
-![Captura de pantalla 2021-09-09 a las 17.59.08](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.59.08.png)
+![Captura de pantalla 2021-09-09 a las 17.59.08](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F15.png?alt=media&token=c16cc2df-ec1c-4cbc-8a2a-820fe9f4f215)
 
-![Captura de pantalla 2021-09-09 a las 17.59.24](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.59.24.png)
+![Captura de pantalla 2021-09-09 a las 17.59.24](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F16.png?alt=media&token=6f176e27-7d87-4bca-ab75-c462c4cb87e5)
 
-![Captura de pantalla 2021-09-09 a las 17.59.54](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 17.59.54.png)
+![Captura de pantalla 2021-09-09 a las 17.59.54](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F17.png?alt=media&token=734b37a5-7400-482b-a332-5c7054415499)
 
 
 
@@ -212,9 +212,9 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
   
 
-![Captura de pantalla 2021-09-09 a las 18.12.54](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 18.12.54.png)
+![Captura de pantalla 2021-09-09 a las 18.12.54](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F18.png?alt=media&token=8bb295b3-087d-46d1-8cbb-667d980e0114)
 
-![Captura de pantalla 2021-09-09 a las 18.14.24](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 18.14.24.png)
+![Captura de pantalla 2021-09-09 a las 18.14.24](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F19.png?alt=media&token=3bc7cf8d-a783-4367-9e9d-381931d6fa62)
 
 
 
@@ -234,9 +234,9 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
   
 
-![Captura de pantalla 2021-09-09 a las 18.29.08](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 18.29.08.png)
+![Captura de pantalla 2021-09-09 a las 18.29.08](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F20.png?alt=media&token=3be52b33-4bef-40ad-88e2-cb44d48fc915)
 
-![Captura de pantalla 2021-09-09 a las 18.30.08](/Users/flaviooria/Desktop/Captura de pantalla 2021-09-09 a las 18.30.08.png)
+![Captura de pantalla 2021-09-09 a las 18.30.08](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F21.png?alt=media&token=81b57bde-8c39-4c2c-bafa-adcf6f422cc6)
 
 
 
@@ -244,7 +244,7 @@ A posteriori se mostrará en la página de inicio mostrando tus productos recié
 
 - Se mostraran todos los tratos que hayas generado ya sean de tipo venta o compra los tendrás todos.
 
-![localhost_8080_FernanPop_war_exploded_pages_tratos.jsp(iPhone 6_7_8)](/Users/flaviooria/Downloads/localhost_8080_FernanPop_war_exploded_pages_tratos.jsp(iPhone 6_7_8).png)
+![localhost_8080_FernanPop_war_exploded_pages_tratos.jsp(iPhone 6_7_8)](https://firebasestorage.googleapis.com/v0/b/fernanpopapp.appspot.com/o/Web-Images%2F22.png?alt=media&token=2157cfff-e66f-4516-bb16-494cb2bb761a)
 
 
 
