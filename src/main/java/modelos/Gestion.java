@@ -13,9 +13,7 @@ import static test.CifradoContrasenia.*;
 
 public class Gestion {
     private static final DAOManager dao = DAOManager.getSingletonInstance();
-    ;
     private static final DaoGestionSQL daoGestionSQL = new DaoGestionSQL();
-    ;
 
     public Gestion() throws Exception {
         dao.open();
