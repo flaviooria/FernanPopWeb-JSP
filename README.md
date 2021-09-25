@@ -93,12 +93,12 @@ A continuación les sugerimos ingresar al link o enlace de descarga del servido 
   3. Añadir nuestra base de datos fernapop.sql al contenedor de mysql y para poder administrarla con phpmyadmin solo bastaría con ingresar a [web - phpmyadmin](http://localhost:8081/).
 
      ```bash
-     $ docker exec -it mysql -u root -p
+     $ docker exec -it mysql mysql -u root -p
      $ password: root
      -- copia el contenido del fichero fernanpop.sql y pegalo.
      ```
 
-- Ya montado nuestra base de datos, por si haz realizado algún cambio ya sea cambiar de nombre el fichero de la base de datos, o tener otra contraseña, o así mismo tener ya tu propia base de dato mysql montada en xamp o en el sistema, tendrías que modificar los ficheros Properties que se encuentran en la ruta de [src](https://github.com/flaviooria/FernanPopWeb/tree/master/src)/[main](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main)/[resources](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources)/[config](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources/config)/[database.properties](https://github.com/flaviooria/FernanPopWeb/blob/master/src/main/resources/config/database.properties) . 
+- Ya montado nuestra base de datos, por si haz realizado algún cambio ya sea cambiar de nombre el fichero de la base de datos, o tener otra contraseña, o así mismo tener ya tu propia base de dato mysql montada en xamp o en el sistema, tendrías que modificar los ficheros Properties que se encuentran en la ruta de la [bd](https://github.com/flaviooria/FernanPopWeb-JSP/blob/master/src/main/resources/config/database.properties) . 
 
   - ```properties
     url=jdbc:mysql://localhost/nombre-base-datos (por defecto = fernanpop.sql)
@@ -108,7 +108,7 @@ A continuación les sugerimos ingresar al link o enlace de descarga del servido 
 
   **Nota** : en este fichero podrás modificar la configuración de acceso a la base de datos que usara la aplicación web.
 
-- Este programa funciona con envío de emails, que esta configurado en un archivo properties, sin embargo tendrás que añadir tu propia configuración de emails, ya que por seguridad no la he añadido en el repositorio. Se encuentra en el mismo directorio de [config](https://github.com/flaviooria/FernanPopWeb/tree/master/src/main/resources/config).
+- Este programa funciona con envío de emails, que esta configurado en un archivo properties, sin embargo tendrás que añadir tu propia configuración de emails, ya que por seguridad no la he añadido en el repositorio. Se encuentra en el mismo directorio de [config](https://github.com/flaviooria/FernanPopWeb-JSP/blob/master/src/main/resources/config/email_config.properties).
 
 - Contaras con una carpeta libraries, la cual contienes todas las librerías usadas en el programa.
 
